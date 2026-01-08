@@ -1,0 +1,130 @@
+---
+interface Props {
+  type?: "text" | "email" | "textarea";
+  name: string;
+  placeholder: string;
+  required?: boolean;
+}
+
+const { type = "text", name, placeholder, required = false } = Astro.props;
+---
+
+<div class="input-container-uiverse w-full">
+  <div class="glow"></div>
+  <div class="darkBorderBg"></div>
+  <div class="white"></div>
+  <div class="border"></div>
+
+  <div class="main-content w-full relative z-10">
+    {type === 'textarea' ? (
+        <textarea 
+            name={name} 
+            placeholder={placeholder} 
+            required={required}
+            rows="5"
+            class="input-uiverse w-full resize-none pt-4"
+        ></textarea>
+    ) : (
+        <input 
+            type={type} 
+            name={name} 
+            placeholder={placeholder} 
+            required={required}
+            class="input-uiverse w-full"
+        />
+    )}
+  </div>
+</div>
+
+<style>
+/* CSS ADAPTADO Y LIMPIADO */
+.input-container-uiverse {
+  position: relative;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px; /* Espacio para el borde */
+  margin-bottom: 20px;
+  isolation: isolate; /* Crea un nuevo contexto de apilamiento */
+}
+
+/* Capas del borde animado */
+.white, .border, .darkBorderBg, .glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none; /* Importante para poder escribir */
+}
+
+.input-uiverse {
+  background-color: #0A0A0A; /* surface */
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  color: white;
+  padding: 16px 20px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.input-uiverse::placeholder { color: #555; }
+
+/* REGLAS DE ANIMACIÓN ADAPTADAS A BYIT (Rojo/Violeta) */
+
+/* Glow base */
+.glow { filter: blur(30px); opacity: 0.2; }
+.glow::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(#000, #FF6363 20%, #000 50%, #8B5CF6 70%, #000 100%);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: all 1s;
+}
+
+/* Borde oscuro fondo */
+.darkBorderBg::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200%; height: 200%;
+  background: #0A0A0A;
+  transform: translate(-50%, -50%);
+}
+
+/* Borde visible */
+.border { filter: blur(1px); }
+.border::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200%; height: 200%;
+  /* Gradiente Byit */
+  background: conic-gradient(from 0deg, transparent 0%, #FF6363 10%, transparent 20%, transparent 50%, #8B5CF6 60%, transparent 70%);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: all 1s;
+  opacity: 0.3;
+}
+
+/* Efectos al hacer Focus/Hover */
+.input-container-uiverse:focus-within .border::before,
+.input-container-uiverse:hover .border::before {
+    transform: translate(-50%, -50%) rotate(180deg);
+    opacity: 1;
+}
+
+.input-container-uiverse:focus-within .glow::before,
+.input-container-uiverse:hover .glow::before {
+    transform: translate(-50%, -50%) rotate(180deg);
+    opacity: 0.6;
+}
+
+.input-container-uiverse:focus-within .input-uiverse {
+    background-color: #050505;
+}
+</style>
