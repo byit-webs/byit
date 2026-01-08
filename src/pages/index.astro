@@ -1,0 +1,272 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import AboutSection from '../components/AboutSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+---
+
+<Layout title="By It Agency - Desarrollo Web Seguro y Rápido">
+  <Navbar />
+  
+  <section class="fade-in-section delay-100 pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary-50 to-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="title-hover-discreto text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        Desarrollo Web Seguro y Rápido para Negocios Locales
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        Enfocados en rendimiento y ciberseguridad. Tu negocio merece una presencia digital profesional sin complicaciones técnicas.
+      </p>
+      
+      <a 
+        href="#contacto" 
+        class="btn-auditoria inline-block font-bold text-lg"
+      >
+        Solicitar Auditoría Gratuita
+      </a>
+
+    </div>
+  </section>
+  
+  <section id="servicios" class="fade-in-section delay-200 py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="title-hover h2-spacing text-3xl sm:text-4xl font-bold text-center text-gray-900 ">
+        Nuestros Servicios
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12">
+        <ServiceCard
+          title="Velocidad Extrema (Astro)"
+          description="Sitios web ultrarrápidos construidos con Astro. Rendimiento optimizado y SEO de primera clase para que tu negocio destaque en los motores de búsqueda."
+          icon="speed"
+        />
+        <ServiceCard
+          title="Seguridad Incluida (ASIR Stnd.)"
+          description="Protección contra hackeos básicos y configuración HTTPS obligatoria. Implementamos estándares de seguridad ASIR para proteger tu presencia digital."
+          icon="shield"
+        />
+        <ServiceCard
+          title="Soporte Cercano"
+          description="Trato directo con los desarrolladores. Sin intermediarios, sin esperas. Comunicación clara y soporte técnico cuando lo necesites."
+          icon="support"
+        />
+      </div>
+    </div>
+  </section>
+  
+  <div class="fade-in-section delay-300">
+    <AboutSection />
+  </div>
+  
+  <section id="contacto" class="fade-in-section delay-400 py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="title-hover h2-spacing-contact text-3xl sm:text-4xl font-bold text-center text-gray-900">
+        Contacta con Nosotros
+      </h2>
+      <form 
+        name="contacto" 
+        method="POST" 
+        netlify
+        class="bg-white rounded-lg shadow-lg p-8 space-y-6"
+      >
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">
+            Nombre
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+            placeholder="Tu nombre"
+          />
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+            placeholder="tu@email.com"
+          />
+        </div>
+        
+        <div>
+          <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">
+            Mensaje
+          </label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            required
+            rows="5"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all resize-none"
+            placeholder="Cuéntanos sobre tu proyecto..."
+          ></textarea>
+        </div>
+        
+        <button
+          type="submit"
+          class="w-full bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg"
+        >
+          Enviar Mensaje
+        </button>
+      </form>
+    </div>
+  </section>
+  
+  <div class="fade-in-section delay-500">
+    <FAQSection />
+  </div>
+  
+  <Footer />
+</Layout>
+
+<style>
+  /* =========================================
+     ANIMACIONES DE ENTRADA (Performance Friendly)
+     ========================================= */
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-section {
+    opacity: 0; /* Oculto al inicio para evitar parpadeos */
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  /* Retrasos escalonados */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+
+  /* =========================================
+     ESTILOS DEL BOTÓN (Estilo Gumroad / By It)
+     ========================================= */
+     
+  .btn-auditoria {
+    --bg: #2563eb; 
+    --hover-bg: #eff6ff;
+    --hover-text: #2563eb;
+    
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid var(--bg);
+    border-radius: 8px;
+    padding: 0.8em 2em;
+    background: var(--bg);
+    transition: 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-auditoria:hover {
+    color: var(--hover-text);
+    transform: translate(-0.25rem, -0.25rem);
+    background: var(--hover-bg);
+    box-shadow: 0.25rem 0.25rem var(--bg);
+  }
+
+  .btn-auditoria:active {
+    transform: translate(0);
+    box-shadow: none;
+  }
+
+  /* =========================================
+     ANIMACIÓN DISCRETA PARA H1
+     ========================================= */
+  
+  .title-hover-discreto {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+
+  .title-hover-discreto:hover {
+    transform: translateY(-4px);
+  }
+
+  /* =========================================
+     MARGIN BOTTOM AJUSTABLE PARA H2
+     ========================================= */
+  
+  .h2-spacing {
+    /* Mantenemos el 6rem que pediste antes */
+    --h2-margin-bottom: 6rem; 
+    margin-bottom: var(--h2-margin-bottom);
+  }
+  .h2-spacing-contact {
+   
+    --h2-margin-bottom: 3rem; 
+    margin-bottom: var(--h2-margin-bottom);
+  }
+  /* =========================================
+     ANIMACIONES DE HOVER PARA TÍTULOS H2 (FIXED)
+     ========================================= */
+  
+  .title-hover {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    
+    /* FIX: Espacio para descendentes (g, j, p, q) y verticalidad */
+    line-height: 1.4; 
+    padding-bottom: 10px; 
+  }
+
+  .title-hover::before {
+    content: '';
+    position: absolute;
+    /* FIX: Ajustado a 0px para compensar el padding de 10px */
+    bottom: 0px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #38bdf8 0%, #2563eb 50%, #38bdf8 100%);
+    background-size: 200% 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+  }
+
+  .title-hover:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #1e40af 0%, #0284c7 50%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .title-hover:hover::before {
+    width: 60%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+</style>

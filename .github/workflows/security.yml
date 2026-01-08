@@ -1,0 +1,23 @@
+name: By It - Security & Quality Gate
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  security-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Auditoría de Seguridad (NPM High)
+        run: npm audit --audit-level=high
+      - name: Verificar Build de Astro
+        run: npm run build

@@ -1,0 +1,137 @@
+---
+---
+
+<section id="quienes-somos" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="title-hover-about h2-spacing text-3xl sm:text-4xl font-bold text-center text-gray-900">
+      Quiénes Somos
+    </h2>
+    
+    <div class="mb-12 text-center max-w-3xl mx-auto">
+      <p class="text-lg text-gray-600 mb-6">
+        Somos <strong class="text-blue-600">Dorian</strong> y <strong class="text-blue-600">Miguel</strong>, los fundadores de By It Agency.
+      </p>
+      <p class="text-lg text-gray-600 mb-6">
+        Actualmente somos estudiantes de <strong class="text-blue-600">ASIR (Administración de Sistemas Informáticos en Red)</strong> en nuestro segundo año. Somos apasionados por la tecnología y siempre estamos buscando nuevas formas de aplicar nuestros conocimientos.
+      </p>
+      <p class="text-lg text-gray-600">
+        Hemos observado que muchos negocios locales no tienen presencia en internet, y gracias a nuestra formación sabemos lo importante que es tener una página web hoy en día. Por eso decidimos crear By It Agency, para ayudar a estos negocios a tener una presencia digital profesional, segura y rápida.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+      <div class="card-personaje bg-gray-50 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mr-4 group-hover:bg-blue-100 transition-colors">
+            <span class="text-2xl font-bold text-blue-600">D</span>
+          </div>
+          <h3 class="title-hover-name text-2xl font-bold text-gray-900">Dorian</h3>
+        </div>
+        <p class="text-gray-600">
+          Estudiante de ASIR apasionado por la ciberseguridad y el desarrollo web. Especializado en crear soluciones seguras y eficientes.
+        </p>
+      </div>
+      
+      <div class="card-personaje bg-gray-50 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mr-4 group-hover:bg-blue-100 transition-colors">
+            <span class="text-2xl font-bold text-blue-600">M</span>
+          </div>
+          <h3 class="title-hover-name text-2xl font-bold text-gray-900">Miguel</h3>
+        </div>
+        <p class="text-gray-600">
+          Estudiante de ASIR con enfoque en desarrollo frontend y experiencia de usuario. Comprometido con crear sitios web modernos y accesibles.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Margin bottom ajustable para H2 */
+  .h2-spacing {
+    --h2-margin-bottom: 6rem; /* Aumentado a 6rem (96px) para igualar al index */
+    margin-bottom: var(--h2-margin-bottom);
+  }
+
+  /* Animación hover para título principal "Quiénes Somos" */
+  .title-hover-about {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    
+    /* FIX: Espacio para descendentes */
+    line-height: 1.4;
+    padding-bottom: 10px;
+  }
+
+  .title-hover-about::before {
+    content: '';
+    position: absolute;
+    /* FIX: Ajustado a 0px por el padding */
+    bottom: 0px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #38bdf8 0%, #2563eb 50%, #38bdf8 100%);
+    background-size: 200% 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+  }
+
+  .title-hover-about:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #1e40af 0%, #0284c7 50%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .title-hover-about:hover::before {
+    width: 60%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Animación hover para nombres (Dorian, Miguel) */
+  .title-hover-name {
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .title-hover-name::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #38bdf8 0%, #2563eb 100%);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+  }
+
+  /* Usamos la clase .card-personaje para controlar el hover de forma segura */
+  .card-personaje:hover .title-hover-name {
+    color: #0284c7;
+    transform: translateX(4px);
+  }
+
+  .card-personaje:hover .title-hover-name::after {
+    width: 100%;
+  }
+</style>
