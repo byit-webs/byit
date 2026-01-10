@@ -10,31 +10,31 @@ const { title, description, icon } = Astro.props;
 
 <div class="card group relative w-full h-full">
   
-  <div class="card-content relative h-full rounded-xl p-6 flex flex-col items-center z-20">
+  <div class="card-content relative h-full rounded-xl p-8 flex flex-col items-center z-20 bg-[#080808] border border-white/5 transition-colors duration-500">
     
-    <div class="mb-4">
-      <div class="w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-300 
-                  bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-violet-500/30">
+    <div class="mb-6">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 
+                  bg-white/5 border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/50 group-hover:scale-110 shadow-[0_0_15px_rgba(0,0,0,0.3)]">
         
         {icon === 'speed' && (
-          <svg class="w-8 h-8 text-violet-400 group-hover:text-violet-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <svg class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         )}
         {icon === 'shield' && (
-          <svg class="w-8 h-8 text-violet-400 group-hover:text-violet-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <svg class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
         )}
         {icon === 'support' && (
-          <svg class="w-8 h-8 text-violet-400 group-hover:text-violet-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          <svg class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
         )}
       </div>
     </div>
 
-    <h3 class="text-xl font-bold text-gray-200 mb-2 text-center group-hover:text-white group-hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.3)] transition-all duration-300">
+    <h3 class="text-xl font-bold text-white mb-3 text-center group-hover:text-primary transition-colors duration-300">
       {title}
     </h3>
     
@@ -45,7 +45,6 @@ const { title, description, icon } = Astro.props;
 </div>
 
 <style>
-  /* CONFIGURACIÓN DE LA TARJETA BASE */
   .card {
     position: relative;
     border-radius: 12px;
@@ -53,59 +52,45 @@ const { title, description, icon } = Astro.props;
     isolation: isolate; 
   }
 
-  /* EL BORDE/FONDO QUE GIRA (::before) */
+  /* EL BORDE QUE GIRA (::before) - Animación restaurada */
   .card::before {
     content: '';
     position: absolute;
-    inset: -3px; /* Borde visible */
+    inset: -2px; 
     border-radius: 14px; 
     
-    /* GRADIENTE BY IT (Rojo a Violeta) */
-    background: linear-gradient(-45deg, #ff5757a4 0%, #442e79 100%);
+    /* GRADIENTE BY IT: Rojo -> Naranja */
+    background: linear-gradient(-45deg, #FF6363 0%, #FF8C00 100%);
     
     z-index: -10; 
-    pointer-events: none;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0; 
   }
 
-  /* EL BRILLO/GLOW (::after) */
+  /* EL GLOW DE FONDO (::after) */
   .card::after {
     content: "";
     z-index: -20; 
     position: absolute;
     inset: 0;
-    
-    background: linear-gradient(-45deg, #FF6363 0%, #8B5CF6 100%);
-    
+    background: linear-gradient(-45deg, #FF6363 0%, #FF8C00 100%);
     transform: translate3d(0, 0, 0) scale(0.95);
     filter: blur(20px);
     opacity: 0; 
     transition: opacity 0.4s ease;
   }
 
-  /* --- ANIMACIONES AL HACER HOVER --- */
-
-  .card:hover::after {
-    opacity: 0.5;
-    filter: blur(30px);
-  }
+  /* --- AL HACER HOVER: LA ANIMACIÓN QUE TE GUSTABA --- */
 
   .card:hover::before {
-    transform: rotate(-90deg) scaleX(1.2) scaleY(0.77);
+    opacity: 1;
+    /* Gira -90 grados y se estira un poco */
+    transform: rotate(-90deg) scaleX(1.1) scaleY(0.85);
   }
-  
-  /* --- FONDO DE LA TARJETA --- */
-  .card-content {
-    /* Aquí está la clave "oscura o gradiente":
-       Usamos un negro muy profundo (#050505) mezclado con un toque 
-       muy sutil de violeta oscuro para que no sea negro plano aburrido.
-    */
-    background: linear-gradient(145deg, #0f0f13 0%, #050505 100%);
-    border-radius: 12px;
-    height: 100%;
-    width: 100%;
-    
-    /* Agregamos un borde interior sutil para separar del brillo giratorio */
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  .card:hover::after {
+    opacity: 0.4;
+    filter: blur(30px);
+    transform: scale(1.05);
   }
 </style>

@@ -5,9 +5,32 @@
 @layer base {
   html {
     @apply scroll-smooth;
+    background-color: #050505;
   }
   
   body {
-    @apply antialiased;
+    @apply antialiased text-gray-100 overflow-x-hidden;
+  }
+
+  /* Scrollbar Fina */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF6363;
+  }
+}
+
+@layer components {
+  /* Utility para tarjetas si la necesitas en otro lado */
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-xl border border-white/5 shadow-2xl;
   }
 }

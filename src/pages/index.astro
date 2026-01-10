@@ -3,149 +3,125 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import AboutSection from '../components/AboutSection.astro';
 import FAQSection from '../components/FAQSection.astro';
-import ServiceCard from '../components/ServiceCard.astro'; // Nueva Card
-import MagicInput from '../components/MagicInput.astro'; // Nuevo Input
-import SocialLinks from '../components/SocialLinks.astro'; // Nuevas Redes
+import ServiceCard from '../components/ServiceCard.astro';
+import MagicInput from '../components/MagicInput.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 const services = [
   {
-    title: "Velocidad Extrema (Astro)",
-    description: "Sitios web ultrarrápidos construidos con Astro. Rendimiento optimizado y SEO de primera clase.",
+    title: "Velocidad Extrema",
+    description: "Sitios web ultrarrápidos construidos con Astro. Rendimiento optimizado al milisegundo.",
     icon: "speed"
   },
   {
-    title: "Seguridad Incluida (ASIR)",
-    description: "Protección contra hackeos básicos y configuración HTTPS obligatoria. Estándares de seguridad ASIR.",
+    title: "Búnker Digital",
+    description: "Arquitectura de seguridad por diseño. Sitios estáticos inexpugnables sin bases de datos vulnerables.",
     icon: "shield"
   },
   {
-    title: "Soporte Cercano",
-    description: "Trato directo con los desarrolladores. Sin intermediarios. Comunicación clara y técnica.",
+    title: "Trato Directo",
+    description: "Comunicación directa con los ingenieros que construyen tu producto. Sin comerciales.",
     icon: "support"
   }
 ];
 ---
 
-<Layout title="Byit - Desarrollo Web Seguro y Rápido">
+<Layout title="Byit - Ingeniería Web de Alto Rendimiento">
     
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-background/60 backdrop-blur-xl">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-2 group cursor-pointer">
-                <img src="/img/favicon.png" alt="Logo Byit" class="w-8 h-8 object-contain transition-transform group-hover:scale-110" />
-                <span class="font-semibold text-lg text-white tracking-tight">Byit</span>
-            </div>
-            <!-- MENÚ ESCRITORIO -->
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-textMuted">
-                <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
-                <a href="#quienes-somos" class="hover:text-white transition-colors">Nosotros</a>
-                <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
-            </div>
-            
-            <!-- BOTÓN ANIMADO "HOVER ME" ADAPTADO -->
-            <div class="btn-container-uiverse">
-                <a href="#contacto" class="button-uiverse">Solicitar Auditoría</a>
-            </div>
-        </div>
-    </nav>
+    <Navbar />
 
-    <main class="relative pt-32 pb-20 px-4 sm:px-6 mt-16">
+    <div class="fixed inset-0 pointer-events-none -z-20 overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(255,140,0,0.08)_0%,transparent_70%)] blur-[100px]"></div>
+        <div class="absolute top-[30%] right-[-10%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,rgba(255,87,87,0.06)_0%,transparent_70%)] blur-[120px]"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.03)_0%,transparent_70%)] blur-[150px]"></div>
+    </div>
+
+    <main class="relative pt-32 pb-20 px-4 sm:px-6 mt-16 relative z-10">
     
-    <!-- HERO SECTION -->
     <Hero />
 
-    <!-- SERVICIOS CON LAS NUEVAS CARDS -->
-    <section id="servicios" class="max-w-5xl mx-auto py-20 flex flex-col items-center">
+    <section id="servicios" class="max-w-6xl mx-auto py-20 flex flex-col items-center relative z-10">
     
-        <h2 class="fade-in-h2 hover-char text-5xl font-bold text-center text-white mb-32  pt-16">
-            Nuestros Servicios
+        <h2 class="fade-in-h2 hover-char text-5xl font-bold text-center text-white mb-24 pt-16">
+            Ingeniería Digital
         </h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full px-4">
             {services.map((service) => (
-                <ServiceCard 
-                    title={service.title} 
-                    description={service.description} 
-                    icon={service.icon} 
-                />
+                <div class="h-[350px]"> <ServiceCard 
+                      title={service.title} 
+                      description={service.description} 
+                      icon={service.icon} 
+                  />
+                </div>
             ))}
         </div>
     
     </section>
 
-    <!-- QUIENES SOMOS -->
     <AboutSection />
 
-    <!-- CONTACTO CON LOS NUEVOS INPUTS -->
     <section id="contacto" class="max-w-xl mx-auto py-12 pt-56">
-        <div class="bg-surface border border-white/10 p-8 rounded-2xl relative overflow-hidden shadow-2xl py-14">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
-            <h2 class="text-3xl font-bold text-white text-center mb-12">Hablemos de tu proyecto</h2>
-            
-            <form 
-            name="contacto" 
-            method="POST" 
-             
-            data-netlify="true" 
-            class="space-y-6 relative z-10"
-        >
-            <input type="hidden" name="form-name" value="contacto" />
-            
-            <div class="fade-in-input">
-                <MagicInput name="nombre" placeholder="Nombre" required={true} />
-            </div>
-            
-            <div class="fade-in-input">
-                <MagicInput type="email" name="email" placeholder="Email" required={true} />
-            </div>
-            
-            <div class="fade-in-input">
-                <MagicInput type="textarea" name="mensaje" placeholder="¿Qué necesitas?" required={true} />
-            </div>
-            
-            <button 
-                type="submit" 
-                class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-4"
+        <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent">
+            <div class="bg-[#050505]/90 backdrop-blur-xl p-8 rounded-2xl relative overflow-hidden shadow-2xl py-14">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
+                <h2 class="text-3xl font-bold text-white text-center mb-4">Inicia tu Transformación</h2>
+                <p class="text-center text-gray-400 mb-10 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
+                
+                <form 
+                name="contacto" 
+                method="POST" 
+                data-netlify="true" 
+                class="space-y-6 relative z-10"
             >
-                Enviar Mensaje
-            </button>
-        </form>
+                <input type="hidden" name="form-name" value="contacto" />
+                
+                <div class="fade-in-input">
+                    <MagicInput name="nombre" placeholder="Nombre" required={true} />
+                </div>
+                
+                <div class="fade-in-input">
+                    <MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} />
+                </div>
+                
+                <div class="fade-in-input">
+                    <MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} />
+                </div>
+                
+                <button 
+                    type="submit" 
+                    class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-4"
+                >
+                    Solicitar Auditoría
+                </button>
+            </form>
+            </div>
         </div>
     </section>
-     <!-- PREGUNTAS FRECUENTES -->
+
     <FAQSection />
 
     </main>
 
-    <!-- FOOTER CON REDES SOCIALES -->
-    <footer class="border-t border-white/5 bg-black py-12 flex flex-col items-center gap-8">
-        <SocialLinks />
-        <p class="text-textMuted text-xs">&copy; {new Date().getFullYear()} Byit. Todos los derechos reservados.</p>
-    </footer>
+    <Footer />
+    <SocialLinks />
 
 </Layout>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Animación fade-in para H2 "Nuestros Servicios"
     const serviciosH2 = document.querySelector('#servicios .fade-in-h2');
-    
-    // Animación fade-in para los MagicInput
     const magicInputs = document.querySelectorAll('.fade-in-input');
     
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          // Para los inputs, añadir un pequeño delay escalonado
           if (entry.target.classList.contains('fade-in-input')) {
-            setTimeout(() => {
-              entry.target.classList.add('fade-in-visible');
-            }, index * 150);
+            setTimeout(() => { entry.target.classList.add('fade-in-visible'); }, index * 150);
           } else {
             entry.target.classList.add('fade-in-visible');
           }
@@ -154,54 +130,14 @@ const services = [
       });
     }, observerOptions);
     
-    // Observar H2 de servicios
-    if (serviciosH2) {
-      observer.observe(serviciosH2);
-    }
-    
-    // Observar cada MagicInput
-    magicInputs.forEach(input => {
-      observer.observe(input);
-    });
+    if (serviciosH2) observer.observe(serviciosH2);
+    magicInputs.forEach(input => observer.observe(input));
   });
 </script>
 
 <style>
-
-    .button-uiverse {
-            font-size: 0.8rem;
-            padding: 0.6em 1.2em;
-            border-radius: 0.5em;
-            border: none;
-            background-color: #000;
-            color: #fff;
-            cursor: pointer;
-            box-shadow: 2px 2px 3px #000000b4;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 600;
-        }
-  /* Animación fade-in para H2 */
-  .fade-in-h2 {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-  }
-  
-  .fade-in-h2.fade-in-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Animación fade-in para MagicInput */
-  .fade-in-input {
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-  
-  .fade-in-input.fade-in-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .fade-in-h2 { opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-out, transform 1.5s ease-out; }
+  .fade-in-h2.fade-in-visible { opacity: 1; transform: translateY(0); }
+  .fade-in-input { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .fade-in-input.fade-in-visible { opacity: 1; transform: translateY(0); }
 </style>
