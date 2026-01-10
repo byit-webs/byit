@@ -2,94 +2,110 @@
 interface Props {
   title: string;
   description: string;
-  image: string;
+  icon: string;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, icon } = Astro.props;
 ---
 
-<div class="card-uiverse">
-  <!-- Fondo de la imagen -->
-  <div class="absolute top-4 left-4 w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center border border-white/10 z-20 backdrop-blur-sm">
-      <img src={image} alt={title} class="w-8 h-8 object-contain" />
-  </div>
+<div class="card group relative w-full h-full">
+  
+  <div class="card-content relative h-full rounded-xl p-6 flex flex-col items-center z-20">
+    
+    <div class="mb-4">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-300 
+                  bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-violet-500/30">
+        
+        {icon === 'speed' && (
+          <svg class="w-8 h-8 text-violet-400 group-hover:text-violet-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        )}
+        {icon === 'shield' && (
+          <svg class="w-8 h-8 text-violet-400 group-hover:text-violet-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )}
+        {icon === 'support' && (
+          <svg class="w-8 h-8 text-violet-400 group-hover:text-violet-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        )}
+      </div>
+    </div>
 
-  <div class="content-box z-20 mt-12">
-      <p class="heading">{title}</p>
-      <p class="desc">{description}</p>
+    <h3 class="text-xl font-bold text-gray-200 mb-2 text-center group-hover:text-white group-hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.3)] transition-all duration-300">
+      {title}
+    </h3>
+    
+    <p class="text-gray-400 text-center text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+      {description}
+    </p>
   </div>
 </div>
 
 <style>
-/* Adaptación del CSS de Uiverse a Byit */
-.card-uiverse {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 260px;
-  background-color: #0A0A0A; /* surface */
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  padding: 20px;
-  gap: 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  color: white;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: transform 0.3s;
-}
+  /* CONFIGURACIÓN DE LA TARJETA BASE */
+  .card {
+    position: relative;
+    border-radius: 12px;
+    cursor: pointer;
+    isolation: isolate; 
+  }
 
-.card-uiverse:hover {
-    transform: translateY(-5px);
-}
+  /* EL BORDE/FONDO QUE GIRA (::before) */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: -3px; /* Borde visible */
+    border-radius: 14px; 
+    
+    /* GRADIENTE BY IT (Rojo a Violeta) */
+    background: linear-gradient(-45deg, #ff5757a4 0%, #442e79 100%);
+    
+    z-index: -10; 
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
 
-.card-uiverse::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  left: -5px;
-  margin: auto;
-  width: 105%;
-  height: 105%;
-  border-radius: 14px;
-  /* GRADIENTE BYIT: Rojo a Violeta */
-  background: linear-gradient(-45deg, #FF6363 0%, #8B5CF6 100% );
-  z-index: -10;
-  pointer-events: none;
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
+  /* EL BRILLO/GLOW (::after) */
+  .card::after {
+    content: "";
+    z-index: -20; 
+    position: absolute;
+    inset: 0;
+    
+    background: linear-gradient(-45deg, #FF6363 0%, #8B5CF6 100%);
+    
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+    opacity: 0; 
+    transition: opacity 0.4s ease;
+  }
 
-.card-uiverse::after {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  inset: 0;
-  /* GRADIENTE BYIT GLOW */
-  background: linear-gradient(-45deg, #FF6363 0%, #8B5CF6 100% );
-  transform: translate3d(0, 0, 0) scale(0.95);
-  filter: blur(20px);
-}
+  /* --- ANIMACIONES AL HACER HOVER --- */
 
-.heading {
-  font-size: 20px;
-  text-transform: capitalize;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
+  .card:hover::after {
+    opacity: 0.5;
+    filter: blur(30px);
+  }
 
-.desc {
-  font-size: 14px;
-  color: #A1A1AA; /* textMuted */
-  line-height: 1.5;
-}
-
-.card-uiverse:hover::after {
-  filter: blur(30px);
-}
-
-.card-uiverse:hover::before {
-  transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
-}
+  .card:hover::before {
+    transform: rotate(-90deg) scaleX(1.2) scaleY(0.77);
+  }
+  
+  /* --- FONDO DE LA TARJETA --- */
+  .card-content {
+    /* Aquí está la clave "oscura o gradiente":
+       Usamos un negro muy profundo (#050505) mezclado con un toque 
+       muy sutil de violeta oscuro para que no sea negro plano aburrido.
+    */
+    background: linear-gradient(145deg, #0f0f13 0%, #050505 100%);
+    border-radius: 12px;
+    height: 100%;
+    width: 100%;
+    
+    /* Agregamos un borde interior sutil para separar del brillo giratorio */
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
 </style>

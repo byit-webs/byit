@@ -1,8 +1,8 @@
 ---
 ---
-<section id="quienes-somos" class="py-20">
+<section id="quienes-somos" class="py-20 pt-44">
   <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-3xl font-bold text-white mb-12">Quiénes Somos</h2>
+    <h2 class="fade-in-h2 hover-char text-5xl font-bold text-center text-white mb-12">Quiénes Somos</h2>
     
     <div class="mb-12 max-w-3xl mx-auto text-textMuted text-lg leading-relaxed space-y-4">
       <p>Somos <strong class="text-white">Dorian</strong> y <strong class="text-white">Miguel</strong>, fundadores de <strong class="text-white">Byit</strong>.</p>
@@ -11,20 +11,91 @@
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- CARD DORIAN -->
-      <div class="p-6 bg-surface border border-white/5 rounded-xl hover:border-primary/30 transition-all group">
-        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-primary font-bold text-xl border border-white/10 group-hover:scale-110 transition-transform">D</div>
-        <h3 class="text-xl font-bold text-white">Dorian</h3>
-        <p class="text-xs text-primary/70 uppercase tracking-widest mb-4">Security Lead</p>
-        <p class="text-sm text-textMuted">Especialista en ciberseguridad y servidores. El guardián de la infraestructura.</p>
+      <div class="about-card about-card-slide-left p-8 bg-surface border border-white/5 rounded-xl hover:border-primary/30 transition-all group min-h-[280px] flex flex-col justify-center">
+        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-primary font-bold text-2xl border border-white/10 group-hover:scale-110 transition-transform">D</div>
+        <h3 class="text-2xl font-bold text-white mb-2">Dorian</h3>
+        <p class="text-sm text-primary/70 uppercase tracking-widest mb-4">Security Lead</p>
+        <p class="text-base text-textMuted leading-relaxed">Especialista en ciberseguridad y servidores. El guardián de la infraestructura que asegura que cada línea de código esté protegida.</p>
       </div>
       
       <!-- CARD MIGUEL -->
-      <div class="p-6 bg-surface border border-white/5 rounded-xl hover:border-secondary/30 transition-all group">
-        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-secondary font-bold text-xl border border-white/10 group-hover:scale-110 transition-transform">M</div>
-        <h3 class="text-xl font-bold text-white">Miguel</h3>
-        <p class="text-xs text-secondary/70 uppercase tracking-widest mb-4">Frontend Lead</p>
-        <p class="text-sm text-textMuted">Obsesionado con la velocidad, el diseño y la experiencia de usuario (UX).</p>
+      <div class="about-card about-card-slide-right p-8 bg-surface border border-white/5 rounded-xl hover:border-secondary/30 transition-all group min-h-[280px] flex flex-col justify-center">
+        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-secondary font-bold text-2xl border border-white/10 group-hover:scale-110 transition-transform">M</div>
+        <h3 class="text-2xl font-bold text-white mb-2">Miguel</h3>
+        <p class="text-sm text-secondary/70 uppercase tracking-widest mb-4">Frontend Lead</p>
+        <p class="text-base text-textMuted leading-relaxed">Obsesionado con la velocidad, el diseño y la experiencia de usuario (UX). Cada pixel cuenta para crear interfaces que enamoran.</p>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animación fade-in para H2 "Quiénes Somos"
+    const quienesSomosH2 = document.querySelector('#quienes-somos .fade-in-h2');
+    
+    // Animación slide para las cards
+    const cards = document.querySelectorAll('.about-card');
+    
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('fade-in-h2')) {
+            entry.target.classList.add('fade-in-visible');
+          } else if (entry.target.classList.contains('about-card')) {
+            entry.target.classList.add('slide-in');
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Observar H2 "Quiénes Somos"
+    if (quienesSomosH2) {
+      observer.observe(quienesSomosH2);
+    }
+    
+    // Observar las cards
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  });
+</script>
+
+<style>
+  /* Animación fade-in para H2 "Quiénes Somos" */
+  .fade-in-h2 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  }
+  
+  .fade-in-h2.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación slide para las cards */
+  .about-card {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .about-card-slide-left {
+    transform: translateX(-60px);
+  }
+  
+  .about-card-slide-right {
+    transform: translateX(60px);
+  }
+  
+  .about-card.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
