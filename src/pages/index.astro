@@ -82,23 +82,34 @@ const services = [
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
             <h2 class="text-3xl font-bold text-white text-center mb-12">Hablemos de tu proyecto</h2>
             
-            <form name="contacto" method="POST" data-netlify="true" class="space-y-6 relative z-10">
-                <input type="hidden" name="form-name" value="contacto" />
-                
-                <div class="fade-in-input">
-                    <MagicInput name="nombre" placeholder="Nombre" />
-                </div>
-                <div class="fade-in-input">
-                    <MagicInput type="email" name="email" placeholder="Email" />
-                </div>
-                <div class="fade-in-input">
-                    <MagicInput type="textarea" name="mensaje" placeholder="¿Qué necesitas?" />
-                </div>
-                
-                <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-colors shadow-lg mt-4">
-                    Enviar Mensaje
-                </button>
-            </form>
+            <form 
+            name="contacto" 
+            method="POST" 
+             
+            data-netlify="true" 
+            class="space-y-6 relative z-10"
+        >
+            <input type="hidden" name="form-name" value="contacto" />
+            
+            <div class="fade-in-input">
+                <MagicInput name="nombre" placeholder="Nombre" required={true} />
+            </div>
+            
+            <div class="fade-in-input">
+                <MagicInput type="email" name="email" placeholder="Email" required={true} />
+            </div>
+            
+            <div class="fade-in-input">
+                <MagicInput type="textarea" name="mensaje" placeholder="¿Qué necesitas?" required={true} />
+            </div>
+            
+            <button 
+                type="submit" 
+                class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-4"
+            >
+                Enviar Mensaje
+            </button>
+        </form>
         </div>
     </section>
      <!-- PREGUNTAS FRECUENTES -->
