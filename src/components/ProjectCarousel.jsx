@@ -25,9 +25,13 @@ export default function ProjectCarousel() {
         <p className="text-gray-400">Resultados reales. Velocidad real.</p>
       </div>
 
-      <div className="relative w-full h-[300px] md:h-[400px] flex justify-center items-center perspective-1000">
+      {/* AUMENTO DE TAMAÑO:
+         - Altura del contenedor: h-[450px] móvil / h-[600px] PC
+         - Tamaño tarjeta: w-[320px] móvil / w-[600px] PC
+      */}
+      <div className="relative w-full h-[450px] md:h-[600px] flex justify-center items-center perspective-1000">
         <div 
-          className="relative w-[280px] md:w-[500px] h-[200px] md:h-[300px] preserve-3d transition-transform duration-700 ease-out"
+          className="relative w-[320px] md:w-[600px] h-[240px] md:h-[400px] preserve-3d transition-transform duration-700 ease-out"
           style={{ transform: `rotateY(${currDeg}deg)` }}
         >
           {projects.map((proj, index) => (
@@ -35,8 +39,10 @@ export default function ProjectCarousel() {
               key={index}
               className="absolute inset-0 bg-[#080808] border border-white/10 rounded-xl p-4 shadow-2xl flex flex-col items-center justify-center gap-4 backface-hidden"
               style={{ 
-                transform: `rotateY(${index * 90}deg) translateZ(280px)`, 
-                '@media (min-width: 768px)': { transform: `rotateY(${index * 90}deg) translateZ(350px)` }
+                // Aumentada la profundidad Z para separar las tarjetas más grandes
+                transform: `rotateY(${index * 90}deg) translateZ(300px)`, 
+                // En PC la profundidad es aún mayor
+                '@media (min-width: 768px)': { transform: `rotateY(${index * 90}deg) translateZ(450px)` }
               }}
             >
               {/* UI Ventana */}
@@ -49,7 +55,7 @@ export default function ProjectCarousel() {
               {/* Contenido Visual */}
               <div className={`w-full h-full rounded-lg bg-gradient-to-br ${proj.color} opacity-20 flex items-center justify-center relative overflow-hidden group`}>
                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30"></div>
-                 <h3 className="text-2xl font-bold text-white drop-shadow-lg relative z-10">{proj.title}</h3>
+                 <h3 className="text-3xl font-bold text-white drop-shadow-lg relative z-10">{proj.title}</h3>
               </div>
               
               <div className="absolute inset-0 border border-white/5 rounded-xl pointer-events-none"></div>
@@ -68,8 +74,14 @@ export default function ProjectCarousel() {
         .perspective-1000 { perspective: 1000px; }
         .preserve-3d { transform-style: preserve-3d; }
         .backface-hidden { backface-visibility: hidden; }
-        @media (max-width: 768px) { .preserve-3d > div { transform: rotateY(var(--tw-rotate-y)) translateZ(180px) !important; } }
-        @media (min-width: 769px) { .preserve-3d > div { transform: rotateY(var(--tw-rotate-y)) translateZ(350px) !important; } }
+        
+        /* Media queries inline para que funcione el translateZ dinámico */
+        @media (max-width: 768px) { 
+            .preserve-3d > div { transform: rotateY(var(--tw-rotate-y)) translateZ(220px) !important; } 
+        }
+        @media (min-width: 769px) { 
+            .preserve-3d > div { transform: rotateY(var(--tw-rotate-y)) translateZ(420px) !important; } 
+        }
       `}</style>
     </div>
   );

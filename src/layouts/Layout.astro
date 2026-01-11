@@ -30,43 +30,10 @@ const { title } = Astro.props;
 			/>
 		</div>
 
-		<div class="loader">
-            <div class="body">
-			  <span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			  </span>
-			  <div class="base">
-				<span></span>
-				<div class="face"></div>
-			  </div>
-			</div>
-			<div class="longfazers">
-			  <span></span>
-			  <span></span>
-			  <span></span>
-			  <span></span>
-			</div>
-			<h1 class="loading-text">ByIt.</h1>
-		</div>
-
-		<slot />
+        <slot />
 
 		<script>
-			// Remover Loader
-			window.addEventListener('load', () => {
-				const loader = document.querySelector('.loader');
-				if (loader) {
-					loader.classList.add('loader-hidden');
-					loader.addEventListener('transitionend', () => {
-						loader.remove();
-					});
-				}
-			});
-
-			// Desvanecer Orb al scroll
+            // Solo queda el script del fondo
 			const orbContainer = document.getElementById('orb-container');
 			window.addEventListener('scroll', () => {
 				if (!orbContainer) return;
@@ -81,13 +48,5 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
-	.loader {
-		position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-		background: #050505; z-index: 9999;
-		transition: opacity 0.5s ease-out, visibility 0.5s;
-		display: flex; justify-content: center; align-items: center; flex-direction: column;
-	}
-	.loader-hidden { opacity: 0; visibility: hidden; }
-	.loading-text { color: #fff; margin-top: 120px; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; opacity: 0.8; }
-    /* Tus animaciones CSS del loader (body, fazer, etc) se asumen presentes o añádelas si faltan */
+    /* Estilos globales básicos */
 </style>
