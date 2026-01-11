@@ -10,7 +10,6 @@ export default function Orb({
 }) {
   const ctnDom = useRef(null);
   
-  // (SHADERS DE OGL IGUALES QUE ANTES)
   const vert = /* glsl */ `
     precision highp float;
     attribute vec2 position;
@@ -101,8 +100,8 @@ export default function Orb({
     }
     
     // --- COLORES BYIT (Naranja/Rojo/Negro) ---
-    const vec3 baseColor1 = vec3(1.0, 0.35, 0.2);  // Rojo anaranjado vibrante
-    const vec3 baseColor2 = vec3(1.0, 0.55, 0.0);  // Naranja puro
+    const vec3 baseColor1 = vec3(1.0, 0.35, 0.2);  // Rojo anaranjado
+    const vec3 baseColor2 = vec3(1.0, 0.55, 0.0);  // Naranja
     const vec3 baseColor3 = vec3(0.3, 0.05, 0.05); // Rojo oscuro fondo
     
     const float innerRadius = 0.6;
@@ -171,6 +170,7 @@ export default function Orb({
       float c = cos(angle);
       uv = vec2(c * uv.x - s * uv.y, s * uv.x + c * uv.y);
       
+      // MOVIMIENTO CON EL MOUSE
       uv.x += hover * hoverIntensity * 0.2 * sin(uv.y * 10.0 + iTime);
       uv.y += hover * hoverIntensity * 0.2 * sin(uv.x * 10.0 + iTime);
       
@@ -221,33 +221,39 @@ export default function Orb({
     }
     window.addEventListener('resize', resize);
     resize();
+    
     let targetHover = 0;
     let lastTime = 0;
     let currentRot = 0;
     const rotationSpeed = 0.3;
 
+    // --- CORRECCIÓN DE INTERACTIVIDAD ---
+    // Usamos 'window' en lugar de 'container' para capturar el mouse
+    // independientemente de las capas que haya encima (Hero, Texto, etc).
     const handleMouseMove = (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const width = rect.width;
-      const height = rect.height;
+      // Como el fondo es fixed y ocupa toda la pantalla, usamos coordenadas de ventana directas
+      const x = e.clientX;
+      const y = e.clientY;
+      
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       const size = Math.min(width, height);
       const centerX = width / 2;
       const centerY = height / 2;
+      
       const uvX = ((x - centerX) / size) * 2.0;
       const uvY = ((y - centerY) / size) * 2.0;
-      if (Math.sqrt(uvX * uvX + uvY * uvY) < 1.0) {
+      
+      // Radio de acción global
+      if (Math.sqrt(uvX * uvX + uvY * uvY) < 1.5) {
         targetHover = 1;
       } else {
         targetHover = 0;
       }
     };
-    const handleMouseLeave = () => {
-      targetHover = 0;
-    };
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
+
+    // Quitamos mouseleave porque al ser window siempre estamos "dentro"
+    window.addEventListener('mousemove', handleMouseMove);
     
     let rafId;
     const update = (t) => {
@@ -257,8 +263,12 @@ export default function Orb({
       program.uniforms.iTime.value = t * 0.001;
       program.uniforms.hue.value = hue;
       program.uniforms.hoverIntensity.value = hoverIntensity;
+      
       const effectiveHover = forceHoverState ? 1 : targetHover;
+      
+      // Suavizado del movimiento
       program.uniforms.hover.value += (effectiveHover - program.uniforms.hover.value) * 0.05;
+      
       if (rotateOnHover && effectiveHover > 0.5) {
         currentRot += dt * rotationSpeed;
       }
@@ -267,20 +277,21 @@ export default function Orb({
       renderer.render({ scene: mesh });
     };
     rafId = requestAnimationFrame(update);
+    
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('mousemove', handleMouseMove);
       container.removeChild(gl.canvas);
       const ext = gl.getExtension('WEBGL_lose_context');
       if (ext) ext.loseContext();
     };
   }, [hue, hoverIntensity, rotateOnHover, forceHoverState, backgroundColor]);
 
-  return <div ref={ctnDom} className="w-full h-full relative z-10 pointer-events-auto" />;
+  return <div ref={ctnDom} className="w-full h-full relative z-10" />;
 }
 
+// Helpers
 function hslToRgb(h, s, l) {
   let r, g, b;
   if (s === 0) {

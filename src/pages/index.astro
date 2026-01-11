@@ -9,6 +9,10 @@ import SocialLinks from '../components/SocialLinks.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
+// IMPORTACIONES NUEVAS
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import ProjectCarousel from '../components/ProjectCarousel.jsx';
+
 const services = [
   {
     title: "Velocidad Extrema",
@@ -32,34 +36,31 @@ const services = [
     
     <Navbar />
 
-    <div class="fixed inset-0 pointer-events-none -z-20 overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(255,140,0,0.08)_0%,transparent_70%)] blur-[100px]"></div>
-        <div class="absolute top-[30%] right-[-10%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,rgba(255,87,87,0.06)_0%,transparent_70%)] blur-[120px]"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.03)_0%,transparent_70%)] blur-[150px]"></div>
-    </div>
-
     <main class="relative pt-32 pb-20 px-4 sm:px-6 mt-16 relative z-10">
     
     <Hero />
 
     <section id="servicios" class="max-w-6xl mx-auto py-20 flex flex-col items-center relative z-10">
-    
         <h2 class="fade-in-h2 hover-char text-5xl font-bold text-center text-white mb-24 pt-16">
             Ingeniería Digital
         </h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full px-4">
             {services.map((service) => (
-                <div class="h-[350px]"> <ServiceCard 
-                      title={service.title} 
-                      description={service.description} 
-                      icon={service.icon} 
-                  />
+                <div class="h-[350px]">
+                  <ServiceCard title={service.title} description={service.description} icon={service.icon} />
                 </div>
             ))}
         </div>
-    
     </section>
+
+    <div class="reveal-on-scroll">
+        <ProcessTimeline />
+    </div>
+
+    <div class="reveal-on-scroll">
+        <ProjectCarousel client:visible />
+    </div>
 
     <AboutSection />
 
@@ -67,36 +68,17 @@ const services = [
         <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent">
             <div class="bg-[#050505]/90 backdrop-blur-xl p-8 rounded-2xl relative overflow-hidden shadow-2xl py-14">
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
+                
                 <h2 class="text-3xl font-bold text-white text-center mb-4">Inicia tu Transformación</h2>
                 <p class="text-center text-gray-400 mb-10 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
                 
-                <form 
-                name="contacto" 
-                method="POST" 
-                data-netlify="true" 
-                class="space-y-6 relative z-10"
-            >
-                <input type="hidden" name="form-name" value="contacto" />
-                
-                <div class="fade-in-input">
-                    <MagicInput name="nombre" placeholder="Nombre" required={true} />
-                </div>
-                
-                <div class="fade-in-input">
-                    <MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} />
-                </div>
-                
-                <div class="fade-in-input">
-                    <MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} />
-                </div>
-                
-                <button 
-                    type="submit" 
-                    class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-4"
-                >
-                    Solicitar Auditoría
-                </button>
-            </form>
+                <form name="contacto" method="POST" data-netlify="true" class="space-y-6 relative z-10">
+                    <input type="hidden" name="form-name" value="contacto" />
+                    <div class="fade-in-input"><MagicInput name="nombre" placeholder="Nombre" required={true} /></div>
+                    <div class="fade-in-input"><MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} /></div>
+                    <div class="fade-in-input"><MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} /></div>
+                    <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-4">Solicitar Auditoría</button>
+                </form>
             </div>
         </div>
     </section>
@@ -114,17 +96,22 @@ const services = [
   document.addEventListener('DOMContentLoaded', () => {
     const serviciosH2 = document.querySelector('#servicios .fade-in-h2');
     const magicInputs = document.querySelectorAll('.fade-in-input');
+    const revealElements = document.querySelectorAll('.reveal-on-scroll, .fade-in-h2');
     
-    const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
+          // Animación general
+          entry.target.classList.add('fade-in-visible');
+          entry.target.classList.add('revealed'); // Para elementos genéricos
+          
+          // Animación escalonada inputs
           if (entry.target.classList.contains('fade-in-input')) {
             setTimeout(() => { entry.target.classList.add('fade-in-visible'); }, index * 150);
-          } else {
-            entry.target.classList.add('fade-in-visible');
           }
+          
           observer.unobserve(entry.target);
         }
       });
@@ -132,12 +119,19 @@ const services = [
     
     if (serviciosH2) observer.observe(serviciosH2);
     magicInputs.forEach(input => observer.observe(input));
+    // Observar los nuevos apartados
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
   });
 </script>
 
 <style>
   .fade-in-h2 { opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-out, transform 1.5s ease-out; }
   .fade-in-h2.fade-in-visible { opacity: 1; transform: translateY(0); }
+  
   .fade-in-input { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
   .fade-in-input.fade-in-visible { opacity: 1; transform: translateY(0); }
+
+  /* Clase generica para revelar secciones */
+  .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+  .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
 </style>
