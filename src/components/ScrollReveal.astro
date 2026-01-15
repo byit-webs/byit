@@ -1,0 +1,64 @@
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (!entry.isIntersecting) return;
+
+        // Animación general (H2 / secciones genéricas)
+        entry.target.classList.add('fade-in-visible');
+        entry.target.classList.add('revealed');
+
+        // Animación escalonada inputs
+        if (entry.target.classList.contains('fade-in-input')) {
+          setTimeout(() => entry.target.classList.add('fade-in-visible'), index * 150);
+        }
+
+        observer.unobserve(entry.target);
+      });
+    }, observerOptions);
+
+    // H2 con fade
+    document.querySelectorAll('.fade-in-h2').forEach((el) => observer.observe(el));
+
+    // Inputs con fade escalonado
+    document.querySelectorAll('.fade-in-input').forEach((el) => observer.observe(el));
+
+    // Secciones genéricas
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+  });
+</script>
+
+<style is:global>
+  .fade-in-h2 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  }
+  .fade-in-h2.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-input {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-in-input.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+  }
+  .reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+

@@ -1,8 +1,11 @@
 {
-  "name": "byit-agency-web",
+  "name": "byit",
   "type": "module",
   "version": "1.0.0",
-  "description": "Plantilla maestra segura y página web oficial de By It Agency",
+  "description": "Plantilla maestra segura y página web oficial de By It",
+  "overrides": {
+    "diff": "^5.2.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -12,12 +15,12 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
-    "@astrojs/tailwind": "^5.1.3",
+    "@astrojs/tailwind": "^6.0.2",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/slim": "^3.9.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.7",
+    "astro": "^5.16.9",
     "astro-particles": "^2.10.0",
     "ogl": "^1.0.11",
     "react": "^19.2.3",

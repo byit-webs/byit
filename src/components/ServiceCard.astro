@@ -10,7 +10,7 @@ const { title, description, icon } = Astro.props;
 
 <div class="card group relative w-full h-full">
   
-  <div class="card-content relative h-full rounded-xl p-8 flex flex-col items-center z-20 bg-[#080808] border border-white/5 transition-colors duration-500">
+  <div class="card-content relative h-full rounded-xl p-8 flex flex-col items-center z-20 bg-[#080808] border border-white/10 transition-colors duration-500">
     
     <div class="mb-6">
       <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 
@@ -52,19 +52,23 @@ const { title, description, icon } = Astro.props;
     isolation: isolate; 
   }
 
-  /* EL BORDE QUE GIRA (::before) - Animación restaurada */
+  /* EL BORDE QUE GIRA (::before) */
   .card::before {
     content: '';
     position: absolute;
     inset: -2px; 
     border-radius: 14px; 
     
-    /* GRADIENTE BY IT: Rojo -> Naranja */
+    /* GRADIENTE BY IT */
     background: linear-gradient(-45deg, #FF6363 0%, #FF8C00 100%);
     
     z-index: -10; 
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    opacity: 0; 
+    
+    /* CAMBIO CRÍTICO: Subimos la intensidad base */
+    opacity: 0.6; /* Antes era 0.3. Ahora se nota mucho más el neón en reposo. */
+    
+    transform: rotate(0deg) scale(0.98); 
   }
 
   /* EL GLOW DE FONDO (::after) */
@@ -75,20 +79,24 @@ const { title, description, icon } = Astro.props;
     inset: 0;
     background: linear-gradient(-45deg, #FF6363 0%, #FF8C00 100%);
     transform: translate3d(0, 0, 0) scale(0.95);
-    filter: blur(20px);
-    opacity: 0; 
+    filter: blur(18px);
+    
+    /* CAMBIO CRÍTICO: Subimos la luz ambiente base */
+    opacity: 0.25; /* Antes era 0.1. Ahora hay más luz detrás siempre. */
+    
     transition: opacity 0.4s ease;
   }
 
-  /* --- AL HACER HOVER: LA ANIMACIÓN QUE TE GUSTABA --- */
+  /* --- ESTADO HOVER (ACTIVACIÓN A TODA POTENCIA) --- */
 
   .card:hover::before {
+    /* Al hacer hover, llega al 100% */
     opacity: 1;
-    /* Gira -90 grados y se estira un poco */
     transform: rotate(-90deg) scaleX(1.1) scaleY(0.85);
   }
 
   .card:hover::after {
+    /* El brillo sube al máximo definido */
     opacity: 0.4;
     filter: blur(30px);
     transform: scale(1.05);

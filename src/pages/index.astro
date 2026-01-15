@@ -8,6 +8,7 @@ import MagicInput from '../components/MagicInput.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
 
 // IMPORTACIONES NUEVAS
 import ProcessTimeline from '../components/ProcessTimeline.astro';
@@ -26,13 +27,13 @@ const services = [
   },
   {
     title: "Trato Directo",
-    description: "Comunicación directa con los ingenieros que construyen tu producto. Sin comerciales.",
+    description: "Comunicación directa con los desarrolladores que construyen tu producto. Sin comerciales.",
     icon: "support"
   }
 ];
 ---
 
-<Layout title="Byit - Ingeniería Web de Alto Rendimiento">
+<Layout title="Byit - Desarrollo Web de Alto Rendimiento">
     
     <Navbar />
 
@@ -64,24 +65,42 @@ const services = [
 
     <AboutSection />
 
-    <section id="contacto" class="max-w-xl mx-auto py-12 pt-56">
-        <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent">
-            <div class="bg-[#050505]/90 backdrop-blur-xl p-8 rounded-2xl relative overflow-hidden shadow-2xl py-14">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
-                
-                <h2 class="text-3xl font-bold text-white text-center mb-4">Inicia tu Transformación</h2>
-                <p class="text-center text-gray-400 mb-10 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
-                
-                <form name="contacto" method="POST" data-netlify="true" class="space-y-6 relative z-10">
-                    <input type="hidden" name="form-name" value="contacto" />
-                    <div class="fade-in-input"><MagicInput name="nombre" placeholder="Nombre" required={true} /></div>
-                    <div class="fade-in-input"><MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} /></div>
-                    <div class="fade-in-input"><MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} /></div>
-                    <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-4">Solicitar Auditoría</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    <section id="contacto" class="max-w-xl mx-auto py-12 pt-32 px-4">
+      <div class="relative group">
+          
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[10px] opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+  
+          <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent">
+              <div class="bg-[#050505] backdrop-blur-xl p-8 rounded-2xl relative overflow-hidden shadow-2xl py-14">
+                  
+                  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
+                  
+                  <h2 class="text-3xl font-bold text-white text-center mb-4">Inicia tu Transformación</h2>
+                  <p class="text-center text-gray-400 mb-10 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
+                  
+                  <form name="contacto" method="POST" data-netlify="true" class="space-y-6 relative z-10">
+                      <input type="hidden" name="form-name" value="contacto" />
+                      
+                      <div class="fade-in-input">
+                          <MagicInput name="nombre" placeholder="Nombre" required={true} />
+                      </div>
+                      
+                      <div class="fade-in-input">
+                          <MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} />
+                      </div>
+                      
+                      <div class="fade-in-input">
+                          <MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} />
+                      </div>
+                      
+                      <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-4">
+                          Solicitar Auditoría
+                      </button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </section>
 
     <FAQSection />
 
@@ -92,46 +111,4 @@ const services = [
 
 </Layout>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const serviciosH2 = document.querySelector('#servicios .fade-in-h2');
-    const magicInputs = document.querySelectorAll('.fade-in-input');
-    const revealElements = document.querySelectorAll('.reveal-on-scroll, .fade-in-h2');
-    
-    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          // Animación general
-          entry.target.classList.add('fade-in-visible');
-          entry.target.classList.add('revealed'); // Para elementos genéricos
-          
-          // Animación escalonada inputs
-          if (entry.target.classList.contains('fade-in-input')) {
-            setTimeout(() => { entry.target.classList.add('fade-in-visible'); }, index * 150);
-          }
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    if (serviciosH2) observer.observe(serviciosH2);
-    magicInputs.forEach(input => observer.observe(input));
-    // Observar los nuevos apartados
-    document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-  });
-</script>
-
-<style>
-  .fade-in-h2 { opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-out, transform 1.5s ease-out; }
-  .fade-in-h2.fade-in-visible { opacity: 1; transform: translateY(0); }
-  
-  .fade-in-input { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-  .fade-in-input.fade-in-visible { opacity: 1; transform: translateY(0); }
-
-  /* Clase generica para revelar secciones */
-  .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-  .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
-</style>
+<ScrollReveal />
