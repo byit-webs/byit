@@ -1,39 +1,31 @@
 ---
 ---
-<section id="quienes-somos" class="py-20 pt-44">
+<section id="quienes-somos" class="py-12 pt-20">
   <div class="max-w-5xl mx-auto text-center">
-    <h2 class="fade-in-h2 hover-char text-5xl font-bold text-center text-white mb-12">Quiénes Somos</h2>
+    <h2 class="fade-in-h2 hover-char text-5xl font-bold text-center text-white mb-10">Quiénes Somos</h2>
     
-    <div class="mb-12 max-w-4xl mx-auto text-textMuted text-lg leading-relaxed space-y-6">
+    <div class="mb-12 max-w-3xl mx-auto text-gray-300 text-lg leading-relaxed space-y-4">
       <p>
         <strong class="text-white">Byit</strong> es una <span class="text-primary font-medium">boutique de desarrollo web de alto rendimiento</span>.
       </p>
       <p>
-        Hemos transformado nuestra obsesión técnica en una propuesta de valor única: llevar la <strong>ingeniería de software de élite</strong> al comercio local. Rechazamos las plantillas genéricas y lentas para construir productos digitales que son verdaderos búnkeres de seguridad con una estética de vanguardia.
+        Rechazamos las plantillas genéricas para construir productos digitales que son verdaderos búnkeres de seguridad con una estética de vanguardia.
       </p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
-      <div class="about-card about-card-slide-left p-8 bg-surface border border-white/5 rounded-xl hover:border-primary/30 transition-all group min-h-[300px] flex flex-col justify-center relative overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+      <div class="about-card about-card-slide-left p-6 bg-surface border border-white/5 rounded-xl hover:border-primary/30 transition-all group min-h-[180px] flex flex-col justify-center items-center relative overflow-hidden">
         <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10"></div>
-        
-        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-primary font-bold text-2xl border border-white/10 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,99,99,0.2)]">D</div>
-        <h3 class="text-2xl font-bold text-white mb-2">Dorian García</h3>
-        <p class="text-xs text-primary uppercase tracking-[0.2em] font-bold mb-4">Infraestructura & Ciberseguridad</p>
-        <p class="text-sm text-gray-400 leading-relaxed">
-            El guardián de la infraestructura. Especialista en servidores y blindaje de redes. Se encarga de que la arquitectura detrás de tu web sea un entorno seguro, robusto y preparado para resistir amenazas.
-        </p>
+        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4 text-primary font-bold text-xl border border-white/10 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,99,99,0.2)]">D</div>
+        <h3 class="text-xl font-bold text-white mb-1">Dorian García</h3>
+        <p class="text-xs text-primary uppercase tracking-[0.2em] font-bold">Infraestructura</p>
       </div>
       
-      <div class="about-card about-card-slide-right p-8 bg-surface border border-white/5 rounded-xl hover:border-secondary/30 transition-all group min-h-[300px] flex flex-col justify-center relative overflow-hidden">
+      <div class="about-card about-card-slide-right p-6 bg-surface border border-white/5 rounded-xl hover:border-secondary/30 transition-all group min-h-[180px] flex flex-col justify-center items-center relative overflow-hidden">
         <div class="absolute top-0 left-0 w-32 h-32 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
-
-        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-secondary font-bold text-2xl border border-white/10 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(139,92,246,0.2)]">M</div>
-        <h3 class="text-2xl font-bold text-white mb-2">Miguel Crespo</h3>
-        <p class="text-xs text-secondary uppercase tracking-[0.2em] font-bold mb-4">Experiencia de Usuario & Frontend</p>
-        <p class="text-sm text-gray-400 leading-relaxed">
-            Escultor de experiencias digitales. Obsesionado con la optimización frontend extrema y el "Pixel Perfect". Su objetivo es que la navegación sea instantánea y visualmente impactante.
-        </p>
+        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4 text-secondary font-bold text-xl border border-white/10 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(139,92,246,0.2)]">M</div>
+        <h3 class="text-xl font-bold text-white mb-1">Miguel Crespo</h3>
+        <p class="text-xs text-secondary uppercase tracking-[0.2em] font-bold">Experiencia de Usuario & Frontend</p>
       </div>
     </div>
   </div>
@@ -41,71 +33,29 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Animación fade-in para H2 "Quiénes Somos"
     const quienesSomosH2 = document.querySelector('#quienes-somos .fade-in-h2');
-    
-    // Animación slide para las cards
     const cards = document.querySelectorAll('.about-card');
-    
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px'
-    };
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains('fade-in-h2')) {
-            entry.target.classList.add('fade-in-visible');
-          } else if (entry.target.classList.contains('about-card')) {
-            entry.target.classList.add('slide-in');
-          }
+          if (entry.target.classList.contains('fade-in-h2')) entry.target.classList.add('fade-in-visible');
+          if (entry.target.classList.contains('about-card')) entry.target.classList.add('slide-in');
           observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.2 });
     
-    // Observar H2 "Quiénes Somos"
-    if (quienesSomosH2) {
-      observer.observe(quienesSomosH2);
-    }
-    
-    // Observar las cards
-    cards.forEach(card => {
-      observer.observe(card);
-    });
+    if (quienesSomosH2) observer.observe(quienesSomosH2);
+    cards.forEach(card => observer.observe(card));
   });
 </script>
 
 <style>
-  /* Animación fade-in para H2 "Quiénes Somos" */
-  .fade-in-h2 {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-  }
-  
-  .fade-in-h2.fade-in-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Animación slide para las cards */
-  .about-card {
-    opacity: 0;
-    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .about-card-slide-left {
-    transform: translateX(-60px);
-  }
-  
-  .about-card-slide-right {
-    transform: translateX(60px);
-  }
-  
-  .about-card.slide-in {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  .fade-in-h2 { opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-out, transform 1.5s ease-out; }
+  .fade-in-h2.fade-in-visible { opacity: 1; transform: translateY(0); }
+  .about-card { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+  .about-card-slide-left { transform: translateX(-60px); }
+  .about-card-slide-right { transform: translateX(60px); }
+  .about-card.slide-in { opacity: 1; transform: translateX(0); }
 </style>
