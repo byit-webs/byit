@@ -31,25 +31,27 @@ const services = [
         <div class="absolute bottom-[-10%] left-[10%] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(255,140,0,0.08)_0%,transparent_70%)] blur-[90px] mix-blend-screen"></div>
     </div>
 
-    <main class="relative pt-24 pb-10 px-4 sm:px-6 relative z-10 w-full overflow-x-hidden">
+    <main class="relative pt-20 px-4 sm:px-6 relative z-10 w-full overflow-x-hidden">
     
-    <Hero />
+    <div class="pb-2">
+        <Hero />
+    </div>
 
-    <section id="servicios" class="max-w-6xl mx-auto py-12 flex flex-col items-center relative z-10 w-full reveal-on-scroll">
-        <h2 class="fade-in-h2 hover-char text-4xl md:text-5xl font-bold text-center text-white mb-12">
+    <section id="servicios" class="max-w-6xl mx-auto py-8 flex flex-col items-center relative z-10 w-full reveal-on-scroll">
+        <h2 class="fade-in-h2 hover-char text-4xl md:text-5xl font-bold text-center text-white mb-8">
             Arquitectura Digital
         </h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full px-2">
             {services.map((service) => (
-                <div class="h-[300px]">
+                <div class="h-[280px]">
                   <ServiceCard title={service.title} description={service.description} icon={service.icon} />
                 </div>
             ))}
         </div>
     </section>
 
-    <div class="reveal-on-scroll py-8 w-full">
+    <div class="reveal-on-scroll w-full">
         <ProcessTimeline />
     </div>
 
@@ -65,16 +67,16 @@ const services = [
         <AboutSection />
     </div>
 
-    <section id="contacto" class="max-w-xl mx-auto py-12 px-4 reveal-on-scroll w-full">
+    <section id="contacto" class="max-w-xl mx-auto py-8 px-4 reveal-on-scroll w-full">
         <div class="relative group">
             <div class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[10px] opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
             <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent">
-                <div class="bg-[#050505]/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl py-10">
+                <div class="bg-[#050505]/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl py-8">
                     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
                     <h2 class="text-3xl font-bold text-white text-center mb-4">Inicia tu Transformación</h2>
-                    <p class="text-center text-gray-400 mb-8 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
+                    <p class="text-center text-gray-400 mb-6 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
                     
-                    <form name="contacto" method="POST" data-netlify="true" class="space-y-5 relative z-10">
+                    <form name="contacto" method="POST" data-netlify="true" class="space-y-4 relative z-10">
                         <input type="hidden" name="form-name" value="contacto" />
                         <div class="fade-in-input"><MagicInput name="nombre" placeholder="Nombre" required={true} /></div>
                         <div class="fade-in-input"><MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} /></div>
@@ -99,19 +101,18 @@ const services = [
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionar todos los elementos que queremos animar
     const animatedElements = document.querySelectorAll('.reveal-on-scroll, .fade-in-h2, .about-card');
     
     const observerOptions = {
-      threshold: 0.1, // Se activa cuando el 10% del elemento es visible
-      rootMargin: '0px 0px -50px 0px' // Margen inferior para que anime un poco antes
+      threshold: 0.1, 
+      rootMargin: '0px 0px -30px 0px' 
     };
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed', 'fade-in-visible', 'slide-in');
-          observer.unobserve(entry.target); // Dejar de observar una vez animado
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -121,9 +122,6 @@ const services = [
 </script>
 
 <style is:global>
-  /* CLASES DE ANIMACIÓN UNIFICADAS */
-  
-  /* Estado inicial invisible y desplazado */
   .reveal-on-scroll, 
   .fade-in-h2,
   .about-card { 
@@ -133,17 +131,12 @@ const services = [
     will-change: opacity, transform;
   }
 
-  /* Estado final visible */
   .reveal-on-scroll.revealed,
   .fade-in-h2.fade-in-visible,
   .about-card.slide-in { 
     opacity: 1; 
     transform: translateY(0); 
   }
-
-  /* Retardo escalonado para hijos si es necesario */
-  .delay-100 { transition-delay: 100ms; }
-  .delay-200 { transition-delay: 200ms; }
 </style>
 
 <ScrollReveal />
