@@ -26,9 +26,9 @@ const services = [
     <Navbar />
 
     <div class="fixed inset-0 w-full h-full pointer-events-none -z-20 overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,99,99,0.15)_0%,transparent_70%)] blur-[80px] mix-blend-screen animate-pulse-slow"></div>
-        <div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,255,255,0.05)_0%,transparent_70%)] blur-[100px] mix-blend-overlay"></div>
-        <div class="absolute bottom-[-10%] left-[10%] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(255,140,0,0.08)_0%,transparent_70%)] blur-[90px] mix-blend-screen"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(255,99,99,0.12)_0%,transparent_60%)] blur-[100px] mix-blend-screen animate-pulse-slow"></div>
+        <div class="absolute top-[30%] right-[-15%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,255,255,0.04)_0%,transparent_60%)] blur-[120px] mix-blend-overlay"></div>
+        <div class="absolute bottom-[-10%] left-[5%] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(255,140,0,0.08)_0%,transparent_70%)] blur-[90px] mix-blend-screen"></div>
     </div>
 
     <main class="relative pt-20 px-4 sm:px-6 relative z-10 w-full overflow-x-hidden">
@@ -38,7 +38,7 @@ const services = [
     </div>
 
     <section id="servicios" class="max-w-6xl mx-auto py-8 flex flex-col items-center relative z-10 w-full reveal-on-scroll">
-        <h2 class="fade-in-h2 hover-char text-4xl md:text-5xl font-bold text-center text-white mb-8">
+        <h2 class="fade-in-h2 hover-char text-4xl md:text-5xl font-bold text-center text-white mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
             Arquitectura Digital
         </h2>
         
@@ -69,10 +69,10 @@ const services = [
 
     <section id="contacto" class="max-w-xl mx-auto py-8 px-4 reveal-on-scroll w-full">
         <div class="relative group">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[10px] opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[15px] opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
             <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent">
                 <div class="bg-[#050505]/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl py-8">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-80 shadow-[0_0_10px_#FF6363]"></div>
                     <h2 class="text-3xl font-bold text-white text-center mb-4">Inicia tu Transformación</h2>
                     <p class="text-center text-gray-400 mb-6 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
                     
@@ -81,7 +81,7 @@ const services = [
                         <div class="fade-in-input"><MagicInput name="nombre" placeholder="Nombre" required={true} /></div>
                         <div class="fade-in-input"><MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} /></div>
                         <div class="fade-in-input"><MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} /></div>
-                        <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-2">Solicitar Auditoría</button>
+                        <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_15px_rgba(255,255,255,0.2)] mt-2">Solicitar Auditoría</button>
                     </form>
                 </div>
             </div>

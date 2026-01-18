@@ -28,9 +28,12 @@ const { title } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-[#050505] text-white font-sans antialiased overflow-x-hidden relative">
+    
+    <body class="bg-transparent text-white font-sans antialiased overflow-x-hidden relative">
 		
-		<div id="orb-container" class="fixed top-0 left-0 w-full h-[650px] -z-10 transition-opacity duration-500 ease-out opacity-80">
+        <div class="fixed inset-0 bg-[#050505] -z-50"></div>
+
+		<div id="orb-container" class="fixed top-0 left-0 w-full h-[800px] -z-10 transition-opacity duration-500 ease-out opacity-70">
 			<Orb 
 				client:load 
 				hue={0} 
@@ -48,8 +51,8 @@ const { title } = Astro.props;
 				if (!orbContainer) return;
 				const scrollY = window.scrollY;
 				const fadeEnd = 600;
-				let opacity = 0.8 - (scrollY / fadeEnd);
-				opacity = Math.max(0, Math.min(0.8, opacity));
+				let opacity = 0.7 - (scrollY / fadeEnd);
+				opacity = Math.max(0, Math.min(0.7, opacity));
 				orbContainer.style.opacity = opacity.toString();
 			});
 		</script>
@@ -57,8 +60,17 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #050505; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
-    ::-webkit-scrollbar-thumb:hover { background: #555; }
+    /* Ocultar barra de scroll pero permitir desplazamiento */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    html {
+        scrollbar-width: none; /* Firefox */
+        background-color: #050505;
+    }
+    
+    body {
+        -ms-overflow-style: none;  /* IE y Edge */
+    }
 </style>

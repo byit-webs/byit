@@ -10,7 +10,6 @@ export default function Orb({
 }) {
   const ctnDom = useRef(null);
   
-  // (SHADERS: NO TOCAR, SON LOS MISMOS)
   const vert = /* glsl */ `
     precision highp float;
     attribute vec2 position;
@@ -40,7 +39,6 @@ export default function Orb({
     float snoise3(vec3 p) { const float K1 = 0.333333333; const float K2 = 0.166666667; vec3 i = floor(p + (p.x + p.y + p.z) * K1); vec3 d0 = p - (i - (i.x + i.y + i.z) * K2); vec3 e = step(vec3(0.0), d0 - d0.yzx); vec3 i1 = e * (1.0 - e.zxy); vec3 i2 = 1.0 - e.zxy * (1.0 - e); vec3 d1 = d0 - (i1 - K2); vec3 d2 = d0 - (i2 - K1); vec3 d3 = d0 - 0.5; vec4 h = max(0.6 - vec4(dot(d0, d0), dot(d1, d1), dot(d2, d2), dot(d3, d3)), 0.0); vec4 n = h * h * h * h * vec4(dot(d0, hash33(i)), dot(d1, hash33(i + i1)), dot(d2, hash33(i + i2)), dot(d3, hash33(i + 1.0))); return dot(vec4(31.316), n); }
     vec4 extractAlpha(vec3 colorIn) { float a = max(max(colorIn.r, colorIn.g), colorIn.b); return vec4(colorIn.rgb / (a + 1e-5), a); }
     
-    // COLORES BYIT
     const vec3 baseColor1 = vec3(1.0, 0.35, 0.2); 
     const vec3 baseColor2 = vec3(1.0, 0.55, 0.0);
     const vec3 baseColor3 = vec3(0.3, 0.05, 0.05);
@@ -109,10 +107,13 @@ export default function Orb({
   useEffect(() => {
     const container = ctnDom.current;
     if (!container) return;
+    
+    // OPTIMIZACIÓN 1: alpha enabled para transparencia
     const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
     const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(0, 0, 0, 0); // Limpia con transparente
     container.appendChild(gl.canvas);
+    
     const geometry = new Triangle(gl);
     const program = new Program(gl, {
       vertex: vert,
@@ -134,15 +135,18 @@ export default function Orb({
     function resize() {
       if (!container) return;
       
-      // --- OPTIMIZACIÓN CLAVE: LIMITAR DPR A 1 ---
-      // Esto reduce drásticamente la carga en móviles y pantallas retina
-      const dpr = 1; 
+      // OPTIMIZACIÓN 2: Reduce resolución a la mitad (DPR 0.5)
+      // Esto dispara el rendimiento.
+      const dpr = 0.5; 
       
       const width = container.clientWidth;
       const height = container.clientHeight;
       renderer.setSize(width * dpr, height * dpr);
+      
+      // Forzar tamaño visual con CSS
       gl.canvas.style.width = width + 'px';
       gl.canvas.style.height = height + 'px';
+      
       program.uniforms.iResolution.value.set(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height);
     }
     window.addEventListener('resize', resize);
@@ -153,7 +157,6 @@ export default function Orb({
     let currentRot = 0;
     const rotationSpeed = 0.3;
 
-    // Listener global para el ratón
     const handleMouseMove = (e) => {
       const x = e.clientX;
       const y = e.clientY;
@@ -207,7 +210,6 @@ export default function Orb({
   return <div ref={ctnDom} className="w-full h-full relative z-10" />;
 }
 
-function hslToRgb(h, s, l) { /* ... Sin cambios ... */ return new Vec3(0,0,0); } 
 function hexToVec3(color) {
   if (color.startsWith('#')) {
     const r = parseInt(color.slice(1, 3), 16) / 255;
