@@ -1,83 +1,152 @@
 ---
----
-<nav id="navbar" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[95%] md:w-auto md:max-w-7xl">
-  
-  <div class="relative bg-[#1a1a1a]/60 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] px-8 py-3 flex items-center justify-between md:justify-center md:gap-10">
 
-    <a href="/" class="text-2xl font-bold text-white hover:text-primary transition-colors tracking-tight flex-shrink-0">
+---
+
+<nav
+  id="navbar"
+  class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[95%] md:w-auto md:max-w-7xl"
+>
+  <div
+    class="relative bg-[#1a1a1a]/60 backdrop-blur-xl rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] px-8 py-3 flex items-center justify-between md:justify-center md:gap-10"
+  >
+    <a
+      href="/"
+      class="text-2xl font-bold text-white hover:text-primary transition-colors tracking-tight flex-shrink-0"
+    >
       ByIt<span class="text-primary">.</span>
     </a>
 
-    <div class="hidden md:flex items-center gap-1 bg-white/5 rounded-full px-2 py-1 border border-white/5">
-      <a href="#servicios" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all">Servicios</a>
-      <a href="#portafolio" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all">Portafolio</a>
-      <a href="#precios" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all">Precios</a>
-      <a href="#quienes-somos" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all">Quiénes Somos</a>
-      <a href="#contacto" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all">Contacto</a>
+    <div
+      class="hidden md:flex items-center gap-1 bg-white/5 rounded-full px-2 py-1 border border-white/5"
+    >
+      <a
+        href="#servicios"
+        class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
+        >Servicios</a
+      >
+      <a
+        href="#portafolio"
+        class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
+        >Portafolio</a
+      >
+      <a
+        href="#precios"
+        class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
+        >Precios</a
+      >
+      <a
+        href="#quienes-somos"
+        class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
+        >Quiénes Somos</a
+      >
+      <a
+        href="#contacto"
+        class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
+        >Contacto</a
+      >
     </div>
 
-    <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none" aria-label="Abrir menú">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden text-gray-300 hover:text-white focus:outline-none"
+      aria-label="Abrir menú"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"></path>
       </svg>
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full mt-4 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col gap-2 shadow-2xl origin-top transition-all duration-300 z-50">
-    <a href="#servicios" class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors">Servicios</a>
-    <a href="#portafolio" class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors">Portafolio</a>
-    <a href="#precios" class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors">Precios</a>
-    <a href="#quienes-somos" class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors">Quiénes Somos</a>
-    <a href="#contacto" class="block px-4 py-3 bg-primary/20 text-primary font-bold rounded-xl text-center">Contactar</a>
+  <div
+    id="mobile-menu"
+    class="hidden absolute top-full left-0 w-full mt-4 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col gap-2 shadow-2xl origin-top transition-all duration-300 z-50"
+  >
+    <a
+      href="#servicios"
+      class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors"
+      >Servicios</a
+    >
+    <a
+      href="#portafolio"
+      class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors"
+      >Portafolio</a
+    >
+    <a
+      href="#precios"
+      class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors"
+      >Precios</a
+    >
+    <a
+      href="#quienes-somos"
+      class="block px-4 py-3 text-gray-300 hover:bg-white/10 rounded-xl transition-colors"
+      >Quiénes Somos</a
+    >
+    <a
+      href="#contacto"
+      class="block px-4 py-3 bg-primary/20 text-primary font-bold rounded-xl text-center"
+      >Contactar</a
+    >
   </div>
-
 </nav>
 
 <script>
   // Lógica del menú
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const links = menu?.querySelectorAll('a');
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const links = menu?.querySelectorAll("a");
 
-  btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
-    if (!menu?.classList.contains('hidden')) {
-      menu?.animate([
-        { opacity: 0, transform: 'scale(0.95) translateY(-10px)' },
-        { opacity: 1, transform: 'scale(1) translateY(0)' }
-      ], { duration: 200, easing: 'ease-out' });
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+    if (!menu?.classList.contains("hidden")) {
+      menu?.animate(
+        [
+          { opacity: 0, transform: "scale(0.95) translateY(-10px)" },
+          { opacity: 1, transform: "scale(1) translateY(0)" },
+        ],
+        { duration: 200, easing: "ease-out" },
+      );
     }
   });
 
-  links?.forEach(link => {
-    link.addEventListener('click', () => {
-      menu?.classList.add('hidden');
+  links?.forEach((link) => {
+    link.addEventListener("click", () => {
+      menu?.classList.add("hidden");
     });
   });
 
   // Lógica de Scroll Spy corregida para evitar errores de tipo
-  const sections = document.querySelectorAll('section, div[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll("section, div[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach((section) => {
       // Verificamos que sea un elemento HTML válido para acceder a offsetTop
       if (section instanceof HTMLElement) {
         const sectionTop = section.offsetTop;
-        if (window.scrollY >= (sectionTop - 300)) {
-          current = section.getAttribute('id') || '';
+        if (window.scrollY >= sectionTop - 300) {
+          current = section.getAttribute("id") || "";
         }
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('bg-white/10', 'text-white');
-      link.classList.add('text-gray-300');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('bg-white/10', 'text-white');
-        link.classList.remove('text-gray-300');
+    navLinks.forEach((link) => {
+      link.classList.remove("bg-white/10", "text-white");
+      link.classList.add("text-gray-300");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("bg-white/10", "text-white");
+        link.classList.remove("text-gray-300");
       }
     });
   });

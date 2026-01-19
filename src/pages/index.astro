@@ -1,141 +1,233 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import AboutSection from '../components/AboutSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import ServiceCard from '../components/ServiceCard.astro';
-import MagicInput from '../components/MagicInput.astro';
-import SocialLinks from '../components/SocialLinks.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import ScrollReveal from '../components/ScrollReveal.astro';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import AboutSection from "../components/AboutSection.astro";
+import FAQSection from "../components/FAQSection.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import MagicInput from "../components/MagicInput.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
 
-import ProcessTimeline from '../components/ProcessTimeline.astro';
-import Portfolio from '../components/Portfolio.astro';
-import PricingSection from '../components/PricingSection.astro';
+import ProcessTimeline from "../components/ProcessTimeline.astro";
+import Portfolio from "../components/Portfolio.astro";
+import PricingSection from "../components/PricingSection.astro";
+import BackgroundGradients from "../components/BackgroundGradients.astro";
 
 const services = [
-  { title: "Velocidad Extrema", description: "Sitios web ultrarrápidos con Astro. Optimizado al milisegundo.", icon: "speed" },
-  { title: "Búnker Digital", description: "Seguridad por diseño. Sin bases de datos vulnerables.", icon: "shield" },
-  { title: "Trato Directo", description: "Comunicación directa con los desarrolladores. Sin comerciales.", icon: "support" }
+  {
+    title: "Velocidad Extrema",
+    description:
+      "Sitios web ultrarrápidos con Astro. Optimizado al milisegundo.",
+    icon: "speed",
+  },
+  {
+    title: "Búnker Digital",
+    description: "Seguridad por diseño. Sin bases de datos vulnerables.",
+    icon: "shield",
+  },
+  {
+    title: "Trato Directo",
+    description:
+      "Comunicación directa con los desarrolladores. Sin comerciales.",
+    icon: "support",
+  },
 ];
 ---
 
 <Layout title="Byit - Desarrollo Web de Alto Rendimiento">
-    
-    <Navbar />
+  <Navbar />
 
-    <div class="fixed inset-0 w-full h-full pointer-events-none -z-20 overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(255,99,99,0.12)_0%,transparent_60%)] blur-[100px] mix-blend-screen animate-pulse-slow"></div>
-        <div class="absolute top-[30%] right-[-15%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,255,255,0.04)_0%,transparent_60%)] blur-[120px] mix-blend-overlay"></div>
-        <div class="absolute bottom-[-10%] left-[5%] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(255,140,0,0.08)_0%,transparent_70%)] blur-[90px] mix-blend-screen"></div>
+  <BackgroundGradients />
+
+  <main class="relative pt-20 px-4 sm:px-6 z-10 w-full overflow-x-hidden">
+    <div class="pb-4">
+      <Hero />
     </div>
 
-    <main class="relative pt-20 px-4 sm:px-6 relative z-10 w-full overflow-x-hidden">
-    
-    <div class="pb-2">
-        <Hero />
-    </div>
+    <section
+      id="servicios"
+      class="max-w-6xl mx-auto flex flex-col items-center relative z-10 w-full reveal-on-scroll pt-28"
+    >
+      <h2
+        class="fade-in-h2 hover-char text-4xl md:text-5xl font-bold text-center text-white mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+      >
+        Arquitectura Digital
+      </h2>
 
-    <section id="servicios" class="max-w-6xl mx-auto py-8 flex flex-col items-center relative z-10 w-full reveal-on-scroll">
-        <h2 class="fade-in-h2 hover-char text-4xl md:text-5xl font-bold text-center text-white mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-            Arquitectura Digital
-        </h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full px-2">
-            {services.map((service) => (
-                <div class="h-[280px]">
-                  <ServiceCard title={service.title} description={service.description} icon={service.icon} />
-                </div>
-            ))}
-        </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-6 w-full px-2 pt-14"
+      >
+        {
+          services.map((service) => (
+            <div class="h-[280px] service-card-wrapper">
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+              />
+            </div>
+          ))
+        }
+      </div>
     </section>
 
     <div class="reveal-on-scroll w-full">
-        <ProcessTimeline />
+      <ProcessTimeline />
     </div>
 
     <div class="reveal-on-scroll w-full">
-        <Portfolio />
+      <Portfolio />
     </div>
 
     <div id="precios" class="reveal-on-scroll w-full">
-        <PricingSection />
+      <PricingSection />
     </div>
 
     <div class="reveal-on-scroll w-full">
-        <AboutSection />
+      <AboutSection />
     </div>
 
-    <section id="contacto" class="max-w-xl mx-auto py-8 px-4 reveal-on-scroll w-full">
-        <div class="relative group">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[15px] opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-            <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent">
-                <div class="bg-[#050505]/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl py-8">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-80 shadow-[0_0_10px_#FF6363]"></div>
-                    <h2 class="text-3xl font-bold text-white text-center mb-4">Inicia tu Transformación</h2>
-                    <p class="text-center text-gray-400 mb-6 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
-                    
-                    <form name="contacto" method="POST" data-netlify="true" class="space-y-4 relative z-10">
-                        <input type="hidden" name="form-name" value="contacto" />
-                        <div class="fade-in-input"><MagicInput name="nombre" placeholder="Nombre" required={true} /></div>
-                        <div class="fade-in-input"><MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} /></div>
-                        <div class="fade-in-input"><MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} /></div>
-                        <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_15px_rgba(255,255,255,0.2)] mt-2">Solicitar Auditoría</button>
-                    </form>
-                </div>
-            </div>
+    <section
+      id="contacto"
+      class="max-w-xl mx-auto py-8 px-4 reveal-on-scroll w-full"
+    >
+      <div class="relative group">
+        <div
+          class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[15px] opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200 animate-tilt"
+        >
         </div>
+        <div
+          class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/10 to-transparent"
+        >
+          <div
+            class="bg-[#050505]/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl py-8"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-80 shadow-[0_0_10px_#FF6363]"
+            >
+            </div>
+            <h2 class="text-3xl font-bold text-white text-center mb-4">
+              Inicia tu Transformación
+            </h2>
+            <p class="text-center text-gray-400 mb-6 text-sm">
+              Cuéntanos tu visión. Te respondemos en menos de 24h.
+            </p>
+
+            <form
+              name="contacto"
+              method="POST"
+              data-netlify="true"
+              class="space-y-4 relative z-10"
+            >
+              <input type="hidden" name="form-name" value="contacto" />
+              <div class="fade-in-input">
+                <MagicInput
+                  name="nombre"
+                  placeholder="Nombre"
+                  required={true}
+                />
+              </div>
+              <div class="fade-in-input">
+                <MagicInput
+                  type="email"
+                  name="email"
+                  placeholder="Email Corporativo"
+                  required={true}
+                />
+              </div>
+              <div class="fade-in-input">
+                <MagicInput
+                  type="textarea"
+                  name="mensaje"
+                  placeholder="Detalles del proyecto..."
+                  required={true}
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_15px_rgba(255,255,255,0.2)] mt-2"
+                >Solicitar Auditoría</button
+              >
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="reveal-on-scroll w-full">
-        <FAQSection />
+      <FAQSection />
     </div>
+  </main>
 
-    </main>
-
-    <Footer />
-    <SocialLinks />
-
+  <Footer />
+  <SocialLinks />
 </Layout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.reveal-on-scroll, .fade-in-h2, .about-card');
-    
+  document.addEventListener("DOMContentLoaded", () => {
+    // Reveal Animations
+    const animatedElements = document.querySelectorAll(
+      ".reveal-on-scroll, .fade-in-h2, .about-card",
+    );
+
     const observerOptions = {
-      threshold: 0.1, 
-      rootMargin: '0px 0px -30px 0px' 
+      threshold: 0.1,
+      rootMargin: "0px 0px -30px 0px",
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed', 'fade-in-visible', 'slide-in');
+          entry.target.classList.add("revealed", "fade-in-visible", "slide-in");
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
-    
-    animatedElements.forEach(el => observer.observe(el));
+
+    animatedElements.forEach((el) => observer.observe(el));
+
+    // Scroll-triggered Hover Effect for Services on Mobile
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      const cards = document.querySelectorAll("#servicios .card");
+
+      const cardObserverOptions = {
+        root: null,
+        rootMargin: "-20% 0px -20% 0px", // Trigger when element is in the middle 60% of screen
+        threshold: 0.5, // Require 50% visibility
+      };
+
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("hover-active");
+          } else {
+            entry.target.classList.remove("hover-active");
+          }
+        });
+      }, cardObserverOptions);
+
+      cards.forEach((card) => cardObserver.observe(card));
+    }
   });
 </script>
 
 <style is:global>
-  .reveal-on-scroll, 
+  .reveal-on-scroll,
   .fade-in-h2,
-  .about-card { 
-    opacity: 0; 
-    transform: translateY(30px); 
+  .about-card {
+    opacity: 0;
+    transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
     will-change: opacity, transform;
   }
 
   .reveal-on-scroll.revealed,
   .fade-in-h2.fade-in-visible,
-  .about-card.slide-in { 
-    opacity: 1; 
-    transform: translateY(0); 
+  .about-card.slide-in {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 

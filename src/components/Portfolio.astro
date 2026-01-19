@@ -1,99 +1,171 @@
 ---
 const projects = [
-  { 
-    id: 1, 
-    title: "E-Commerce", 
-    desc: "Tienda online de alto rendimiento.", 
-    image: "/img/pagina1.png", 
-    tag: "Real", 
-    link: "#" 
+  {
+    id: 1,
+    title: "Barbería",
+    desc: "Barbería Premium. Estilo, Precisión y Cultura.",
+    image: "/img/barbershop.png",
+    tag: "Demo",
+    link: "/demos/barbershop/index.html",
   },
-  { 
-    id: 2, 
-    title: "Taller Mecánico", 
-    desc: "Sistema de reservas y servicios.", 
+  {
+    id: 2,
+    title: "Taller Mecánico",
+    desc: "Sistema de reservas y servicios.",
     image: "/img/paginataller.png", // TU IMAGEN
-    tag: "Demo", 
-    link: "/demos/taller/index.html" // TU DEMO (Funciona en local y producción)
+    tag: "Demo",
+    link: "/demos/taller/index.html", // TU DEMO (Funciona en local y producción)
   },
-  { 
+  {
     id: 3, // O el ID que toque
-    title: "Clínica Dental", 
-    desc: "Diseño corporativo y gestión de citas.", 
+    title: "Clínica Dental",
+    desc: "Diseño corporativo y gestión de citas.",
     image: "/img/paginaclinica.png", // Asegúrate de tener esta foto en ByIt
-    tag: "Demo", 
-    link: "/demos/clinica-dental/index.html" // ENLACE A TU NUEVA CARPETA
+    tag: "Demo",
+    link: "/demos/clinica-dental/index.html", // ENLACE A TU NUEVA CARPETA
   },
-  { 
-    id: 4, 
-    title: "Startup SaaS", 
-    desc: "Landing page de alta conversión.", 
-    image: "/img/pagina4.png", 
-    tag: "Demo", 
-    link: "#" 
-  }
+  {
+    id: 4,
+    title: "Startup SaaS",
+    desc: "Landing page de alta conversión.",
+    image: "/img/pagina4.png",
+    tag: "Demo",
+    link: "#",
+  },
 ];
 ---
 
 <section id="portafolio" class="py-8 px-4 w-full relative z-10">
   <div class="max-w-6xl mx-auto w-full">
     <div class="text-center mb-8 px-4">
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-2 fade-in-h2">Portafolio</h2>
-      <p class="text-gray-400">Resultados tangibles. Haz clic para probar las demos.</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-2 fade-in-h2">
+        Portafolio
+      </h2>
+      <p class="text-gray-400">
+        Resultados tangibles. Haz clic para probar las demos.
+      </p>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-3 h-[600px] md:h-[450px] w-full max-w-5xl mx-auto">
-      {projects.map((project, index) => (
-        <a 
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={`portfolio-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out flex-1 hover:flex-[2] ${index === 1 ? 'active' : ''}`} 
-          aria-label={`Ver proyecto ${project.title}`}
-        >
-          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105" style={`background-image: url('${project.image}');`}></div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
-          
-          <div class="absolute top-4 right-4 z-20">
-            <span class={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${project.tag === 'Real' ? 'bg-green-900/40 text-green-400 border-green-500/30' : 'bg-orange-900/40 text-orange-400 border-orange-500/30'}`}>{project.tag}</span>
-          </div>
+    <div
+      class="flex flex-col md:flex-row gap-3 h-[600px] md:h-[450px] w-full max-w-5xl mx-auto"
+    >
+      {
+        projects.map((project, index) => (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`portfolio-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-in-out flex-1 hover:flex-[2] ${index === 1 ? "active" : ""}`}
+            aria-label={`Ver proyecto ${project.title}`}
+          >
+            <div
+              class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+              style={`background-image: url('${project.image}');`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
 
-          <div class="absolute bottom-0 left-0 w-full p-5 z-20 translate-y-2 transition-transform duration-500 content">
-            <h3 class="text-xl font-bold text-white mb-1">{project.title}</h3>
-            <p class="text-gray-300 text-xs opacity-80">{project.desc}</p>
-          </div>
-          
-          <div class="absolute inset-0 border border-white/10 rounded-2xl hover:border-primary/50 transition-colors pointer-events-none"></div>
-        </a>
-      ))}
+            <div class="absolute top-4 right-4 z-20">
+              <span
+                class={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${project.tag === "Real" ? "bg-green-900/40 text-green-400 border-green-500/30" : "bg-orange-900/40 text-orange-400 border-orange-500/30"}`}
+              >
+                {project.tag}
+              </span>
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full p-5 z-20 translate-y-2 transition-transform duration-500 content">
+              <h3 class="text-xl font-bold text-white mb-1">{project.title}</h3>
+              <p class="text-gray-300 text-xs opacity-80">{project.desc}</p>
+            </div>
+
+            <div class="absolute inset-0 border border-white/10 rounded-2xl hover:border-primary/50 transition-colors pointer-events-none" />
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>
 
 <script>
-  const cards = document.querySelectorAll('.portfolio-card');
-  cards.forEach(card => {
-    // Hover en escritorio
-    card.addEventListener('mouseenter', () => {
-      cards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-    });
-    
-    // Click en móvil (primero expande, segundo click abre enlace)
-    card.addEventListener('click', (e) => {
-        if (!card.classList.contains('active') && window.innerWidth < 768) {
-            e.preventDefault(); 
-            cards.forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
+  const cards = document.querySelectorAll(".portfolio-card");
+
+  // Fonction par défaut pour les intéractions manuelles
+  const manualInteraction = () => {
+    cards.forEach((card) => {
+      // Hover en escritorio
+      card.addEventListener("mouseenter", () => {
+        if (window.innerWidth >= 768) {
+          cards.forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
         }
+      });
+
+      // Click en móvil (primero expande, segundo click abre enlace)
+      card.addEventListener("click", (e) => {
+        if (!card.classList.contains("active") && window.innerWidth < 768) {
+          e.preventDefault();
+          cards.forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+        }
+      });
     });
+  };
+
+  manualInteraction();
+
+  // Scroll Trigger Extension for Mobile (Responsive)
+  let observer;
+
+  const initMobileObserver = () => {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      if (observer) return; // Already initialized
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: 0,
+      };
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            cards.forEach((c) => c.classList.remove("active"));
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      cards.forEach((card) => observer.observe(card));
+    } else {
+      // Clean up if desktop
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+        // Optional: Remove active class if we don't want any card active by default on desktop init
+        cards.forEach((c) => c.classList.remove("active"));
+      }
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", initMobileObserver);
+
+  // Handle resize to switch between modes dynamically
+  window.addEventListener("resize", () => {
+    // Minimal debounce could be good, but for simplicity:
+    initMobileObserver();
   });
 </script>
 
 <style>
-  .portfolio-card.active { flex: 3; }
-  @media (max-width: 768px) { 
-      .portfolio-card { flex: 1; min-height: 80px; } 
-      .portfolio-card.active { flex: 4; } 
+  .portfolio-card.active {
+    flex: 3;
+  }
+  @media (max-width: 768px) {
+    .portfolio-card {
+      flex: 1;
+      min-height: 80px;
+    }
+    .portfolio-card.active {
+      flex: 4;
+    }
   }
 </style>

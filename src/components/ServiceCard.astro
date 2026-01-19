@@ -9,36 +9,77 @@ const { title, description, icon } = Astro.props;
 ---
 
 <div class="card group relative w-full h-full">
-  
-  <div class="card-content relative h-full rounded-xl p-8 flex flex-col items-center z-20 bg-[#080808] border border-white/10 transition-colors duration-500">
-    
+  <div
+    class="card-content relative h-full rounded-xl p-8 flex flex-col items-center z-20 bg-[#080808] border border-white/10 transition-colors duration-500"
+  >
     <div class="mb-6">
-      <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 
-                  bg-white/5 border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/50 group-hover:scale-110 shadow-[0_0_15px_rgba(0,0,0,0.3)]">
-        
-        {icon === 'speed' && (
-          <svg class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        )}
-        {icon === 'shield' && (
-          <svg class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-        )}
-        {icon === 'support' && (
-          <svg class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-        )}
+      <div
+        class="icon-container w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300
+                  bg-white/5 border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/50 group-hover:scale-110 shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+      >
+        {
+          icon === "speed" && (
+            <svg
+              class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+          )
+        }
+        {
+          icon === "shield" && (
+            <svg
+              class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              />
+            </svg>
+          )
+        }
+        {
+          icon === "support" && (
+            <svg
+              class="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              />
+            </svg>
+          )
+        }
       </div>
     </div>
 
-    <h3 class="text-xl font-bold text-white mb-3 text-center group-hover:text-primary transition-colors duration-300">
+    <h3
+      class="text-xl font-bold text-white mb-3 text-center group-hover:text-primary transition-colors duration-300"
+    >
       {title}
     </h3>
-    
-    <p class="text-gray-400 text-center text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+
+    <p
+      class="text-gray-400 text-center text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300"
+    >
       {description}
     </p>
   </div>
@@ -49,41 +90,41 @@ const { title, description, icon } = Astro.props;
     position: relative;
     border-radius: 12px;
     cursor: pointer;
-    isolation: isolate; 
+    isolation: isolate;
   }
 
   /* EL BORDE QUE GIRA (::before) */
   .card::before {
-    content: '';
+    content: "";
     position: absolute;
-    inset: -2px; 
-    border-radius: 14px; 
-    
+    inset: -2px;
+    border-radius: 14px;
+
     /* GRADIENTE BY IT */
-    background: linear-gradient(-45deg, #FF6363 0%, #FF8C00 100%);
-    
-    z-index: -10; 
+    background: linear-gradient(-45deg, #ff6363 0%, #ff8c00 100%);
+
+    z-index: -10;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    
+
     /* CAMBIO CRÍTICO: Subimos la intensidad base */
     opacity: 0.6; /* Antes era 0.3. Ahora se nota mucho más el neón en reposo. */
-    
-    transform: rotate(0deg) scale(0.98); 
+
+    transform: rotate(0deg) scale(0.98);
   }
 
   /* EL GLOW DE FONDO (::after) */
   .card::after {
     content: "";
-    z-index: -20; 
+    z-index: -20;
     position: absolute;
     inset: 0;
-    background: linear-gradient(-45deg, #FF6363 0%, #FF8C00 100%);
+    background: linear-gradient(-45deg, #ff6363 0%, #ff8c00 100%);
     transform: translate3d(0, 0, 0) scale(0.95);
     filter: blur(12px);
-    
+
     /* CAMBIO CRÍTICO: Subimos la luz ambiente base */
     opacity: 0.9; /* Antes era 0.1. Ahora hay más luz detrás siempre. */
-    
+
     transition: opacity 0.4s ease;
   }
 
@@ -100,5 +141,37 @@ const { title, description, icon } = Astro.props;
     opacity: 0.4;
     filter: blur(30px);
     transform: scale(1.05);
+  }
+
+  /* Aplica estilos a los hijos cuando .hover-active está presente en .card (SOLO MÓVIL) */
+  @media (max-width: 768px) {
+    .card.hover-active::before {
+      opacity: 1;
+      transform: rotate(-90deg) scaleX(1.1) scaleY(0.85);
+    }
+
+    .card.hover-active::after {
+      opacity: 0.4;
+      filter: blur(30px);
+      transform: scale(1.05);
+    }
+
+    .card.hover-active .icon-container {
+      background-color: rgba(255, 99, 99, 0.1);
+      border-color: rgba(255, 99, 99, 0.5);
+      transform: scale(1.1);
+    }
+
+    .card.hover-active svg {
+      color: #ff6363; /* primary color approx */
+    }
+
+    .card.hover-active h3 {
+      color: #ff6363;
+    }
+
+    .card.hover-active p {
+      color: #e5e7eb; /* gray-200 */
+    }
   }
 </style>

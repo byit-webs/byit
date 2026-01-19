@@ -1,5 +1,5 @@
 ---
-import Orb from '../components/Orb.jsx';
+import Orb from "../components/Orb.jsx";
 
 interface Props {
 	title: string;
@@ -8,36 +8,49 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-        <meta name="theme-color" content="#050505" />
-        <meta name="description" content="Byit: Boutique de desarrollo web de alto rendimiento. Diseño personalizado, velocidad extrema y seguridad para negocios que buscan superar a la competencia." />
-		
-        <link rel="icon" type="image/png" href="/img/favicon.png" />
-        <link rel="apple-touch-icon" href="/img/favicon.png">
+		<meta name="theme-color" content="#050505" />
+		<meta
+			name="description"
+			content="Byit: Boutique de desarrollo web de alto rendimiento. Diseño personalizado, velocidad extrema y seguridad para negocios que buscan superar a la competencia."
+		/>
 
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content="Desarrollo web de élite. Velocidad, seguridad y diseño sin plantillas." />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/img/og-image.png" /> 
+		<link rel="icon" type="image/png" href="/img/favicon.png" />
+		<link rel="apple-touch-icon" href="/img/favicon.png" />
+
+		<meta property="og:title" content={title} />
+		<meta
+			property="og:description"
+			content="Desarrollo web de élite. Velocidad, seguridad y diseño sin plantillas."
+		/>
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="/img/og-image.png" />
 
 		<title>{title}</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
-    
-    <body class="bg-transparent text-white font-sans antialiased overflow-x-hidden relative">
-		
-        <div class="fixed inset-0 bg-[#050505] -z-50"></div>
 
-		<div id="orb-container" class="fixed top-0 left-0 w-full h-[800px] -z-10 transition-opacity duration-500 ease-out opacity-70">
-			<Orb 
-				client:load 
-				hue={0} 
-				hoverIntensity={0.6} 
+	<body
+		class="bg-transparent text-white font-sans antialiased overflow-x-hidden relative"
+	>
+		<div class="fixed inset-0 bg-[#050505] -z-50"></div>
+
+		<div
+			id="orb-container"
+			class="fixed top-0 left-0 w-full h-[800px] -z-10 transition-opacity duration-500 ease-out opacity-70"
+		>
+			<Orb
+				client:load
+				hue={0}
+				hoverIntensity={0.6}
 				rotateOnHover={true}
 				backgroundColor="#050505"
 			/>
@@ -46,31 +59,53 @@ const { title } = Astro.props;
 		<slot />
 
 		<script>
-			const orbContainer = document.getElementById('orb-container');
-			window.addEventListener('scroll', () => {
+			const orbContainer = document.getElementById("orb-container");
+			window.addEventListener("scroll", () => {
 				if (!orbContainer) return;
 				const scrollY = window.scrollY;
 				const fadeEnd = 600;
-				let opacity = 0.7 - (scrollY / fadeEnd);
+				let opacity = 0.7 - scrollY / fadeEnd;
 				opacity = Math.max(0, Math.min(0.7, opacity));
 				orbContainer.style.opacity = opacity.toString();
 			});
+		</script>
+
+		<script>
+			import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm";
+
+			const lenis = new Lenis({
+				duration: 1.2,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				direction: "vertical",
+				gestureDirection: "vertical",
+				smooth: true,
+				mouseMultiplier: 1,
+				smoothTouch: false,
+				touchMultiplier: 2,
+			});
+
+			function raf(time) {
+				lenis.raf(time);
+				requestAnimationFrame(raf);
+			}
+
+			requestAnimationFrame(raf);
 		</script>
 	</body>
 </html>
 
 <style is:global>
-    /* Ocultar barra de scroll pero permitir desplazamiento */
-    ::-webkit-scrollbar {
-        display: none;
-    }
-    
-    html {
-        scrollbar-width: none; /* Firefox */
-        background-color: #050505;
-    }
-    
-    body {
-        -ms-overflow-style: none;  /* IE y Edge */
-    }
+	/* Ocultar barra de scroll pero permitir desplazamiento */
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	html {
+		scrollbar-width: none; /* Firefox */
+		background-color: #050505;
+	}
+
+	body {
+		-ms-overflow-style: none; /* IE y Edge */
+	}
 </style>
