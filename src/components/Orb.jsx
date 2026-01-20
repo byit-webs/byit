@@ -9,7 +9,7 @@ export default function Orb({
   backgroundColor = '#050505'
 }) {
   const ctnDom = useRef(null);
-  
+
   const vert = /* glsl */ `
     precision highp float;
     attribute vec2 position;
@@ -107,13 +107,13 @@ export default function Orb({
   useEffect(() => {
     const container = ctnDom.current;
     if (!container) return;
-    
+
     // OPTIMIZACIÓN 1: alpha enabled para transparencia
     const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0); // Limpia con transparente
     container.appendChild(gl.canvas);
-    
+
     const geometry = new Triangle(gl);
     const program = new Program(gl, {
       vertex: vert,
@@ -134,24 +134,24 @@ export default function Orb({
 
     function resize() {
       if (!container) return;
-      
+
       // OPTIMIZACIÓN 2: Reduce resolución a la mitad (DPR 0.5)
       // Esto dispara el rendimiento.
-      const dpr = 0.5; 
-      
+      const dpr = 0.5;
+
       const width = container.clientWidth;
       const height = container.clientHeight;
       renderer.setSize(width * dpr, height * dpr);
-      
+
       // Forzar tamaño visual con CSS
       gl.canvas.style.width = width + 'px';
       gl.canvas.style.height = height + 'px';
-      
+
       program.uniforms.iResolution.value.set(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height);
     }
     window.addEventListener('resize', resize);
     resize();
-    
+
     let targetHover = 0;
     let lastTime = 0;
     let currentRot = 0;
@@ -167,7 +167,7 @@ export default function Orb({
       const centerY = height / 2;
       const uvX = ((x - centerX) / size) * 2.0;
       const uvY = ((y - centerY) / size) * 2.0;
-      
+
       if (Math.sqrt(uvX * uvX + uvY * uvY) < 1.5) {
         targetHover = 1;
       } else {
@@ -176,7 +176,7 @@ export default function Orb({
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    
+
     let rafId;
     const update = (t) => {
       rafId = requestAnimationFrame(update);
@@ -187,7 +187,7 @@ export default function Orb({
       program.uniforms.hoverIntensity.value = hoverIntensity;
       const effectiveHover = forceHoverState ? 1 : targetHover;
       program.uniforms.hover.value += (effectiveHover - program.uniforms.hover.value) * 0.05;
-      
+
       if (rotateOnHover && effectiveHover > 0.5) {
         currentRot += dt * rotationSpeed;
       }
@@ -196,7 +196,7 @@ export default function Orb({
       renderer.render({ scene: mesh });
     };
     rafId = requestAnimationFrame(update);
-    
+
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
