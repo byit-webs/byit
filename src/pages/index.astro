@@ -119,9 +119,18 @@ const services = [
               name="contacto"
               method="POST"
               data-netlify="true"
+              netlify-honeypot="bot-field"
+              data-netlify-recaptcha="true"
               class="space-y-4 relative z-10"
             >
+              <p class="hidden">
+                <label>
+                  No rellenes esto si eres humano: <input name="bot-field" />
+                </label>
+              </p>
+
               <input type="hidden" name="form-name" value="contacto" />
+
               <div class="fade-in-input">
                 <MagicInput
                   name="nombre"
@@ -129,14 +138,17 @@ const services = [
                   required={true}
                 />
               </div>
+
               <div class="fade-in-input">
                 <MagicInput
                   type="email"
                   name="email"
                   placeholder="Email Corporativo"
                   required={true}
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 />
               </div>
+
               <div class="fade-in-input">
                 <MagicInput
                   type="textarea"
@@ -145,11 +157,19 @@ const services = [
                   required={true}
                 />
               </div>
+
+              <div
+                data-netlify-recaptcha="true"
+                class="my-4 flex justify-center"
+              >
+              </div>
+
               <button
                 type="submit"
                 class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_15px_rgba(255,255,255,0.2)] mt-2"
-                >Solicitar Auditoría</button
               >
+                Solicitar Auditoría
+              </button>
             </form>
           </div>
         </div>

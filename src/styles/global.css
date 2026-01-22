@@ -28,6 +28,10 @@
   }
 }
 
+.hidden {
+  display: none !important;
+}
+
 @layer components {
   /* Utility para tarjetas si la necesitas en otro lado */
   .glass-panel {
