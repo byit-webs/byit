@@ -7,7 +7,7 @@ interface Props {
 }
 const { title } = Astro.props;
 
-// TU ID DE ANALYTICS
+// TU ID DE ANALYTICS REAL
 const GA_ID = "G-4FLC2T40F9"; 
 ---
 
@@ -121,9 +121,9 @@ const GA_ID = "G-4FLC2T40F9";
     html { scrollbar-width: none; background-color: #050505; }
     body { -ms-overflow-style: none; }
     
-    /* ANIMACIONES ACTIVAS */
+    /* ANIMACIONES ACTIVAS (Vuelven a estar ocultas al principio) */
     .animate-on-scroll { 
-        opacity: 0; /* Empieza invisible */
+        opacity: 0; 
         transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
         will-change: opacity, transform; 
     }
