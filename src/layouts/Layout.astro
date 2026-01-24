@@ -7,7 +7,6 @@ interface Props {
 }
 const { title } = Astro.props;
 
-// TU ID DE ANALYTICS REAL
 const GA_ID = "G-4FLC2T40F9"; 
 ---
 
@@ -41,7 +40,6 @@ const GA_ID = "G-4FLC2T40F9";
         <script is:inline define:vars={{ GA_ID }}>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            // Denegar por defecto
             gtag('consent', 'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied' });
             gtag('js', new Date());
             gtag('config', GA_ID);
@@ -49,11 +47,14 @@ const GA_ID = "G-4FLC2T40F9";
         <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
     </head>
 
-    <body class="bg-[#050505] text-white font-sans antialiased overflow-x-hidden relative">
+    <body class="bg-transparent text-white font-sans antialiased overflow-x-hidden relative">
+        
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNH455WH"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </noscript>
+
+        <div class="fixed inset-0 bg-[#050505] -z-50"></div>
 
         <div id="orb-container" class="fixed top-0 left-0 w-full h-[800px] -z-10 transition-opacity duration-500 ease-out opacity-90">
             <Orb client:load hue={0} hoverIntensity={0.8} rotateOnHover={true} backgroundColor="#050505" />
@@ -121,7 +122,6 @@ const GA_ID = "G-4FLC2T40F9";
     html { scrollbar-width: none; background-color: #050505; }
     body { -ms-overflow-style: none; }
     
-    /* ANIMACIONES ACTIVAS (Vuelven a estar ocultas al principio) */
     .animate-on-scroll { 
         opacity: 0; 
         transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
