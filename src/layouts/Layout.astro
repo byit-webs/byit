@@ -14,22 +14,6 @@ const GA_ID = "G-4FLC2T40F9";
 <!doctype html>
 <html lang="es">
     <head>
-        <meta http-equiv="Content-Security-Policy" content="
-            default-src 'self';
-            script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net;
-            style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-            font-src 'self' https://fonts.gstatic.com;
-            connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com;
-            img-src 'self' https://www.google-analytics.com https://www.googletagmanager.com data:;
-            frame-src 'self' https://www.googletagmanager.com;
-        ">
-        <script is:inline>
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-PNH455WH');
-        </script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <meta name="theme-color" content="#050505" />
@@ -46,17 +30,24 @@ const GA_ID = "G-4FLC2T40F9";
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,900&display=swap" rel="stylesheet">
 
+        <script is:inline>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PNH455WH');
+        </script>
         <script is:inline define:vars={{ GA_ID }}>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             
+            // Denegar por defecto
             gtag('consent', 'default', {
                 'ad_storage': 'denied',
                 'analytics_storage': 'denied'
             });
             
             gtag('js', new Date());
-            
             gtag('config', GA_ID);
         </script>
         
