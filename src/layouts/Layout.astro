@@ -25,9 +25,9 @@ const GA_ID = "G-4FLC2T40F9";
         <meta property="og:image" content="/img/og-image.png" />
         <title>{title}</title>
         
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,900&display=swap" rel="stylesheet">
 
         <script is:inline>
@@ -37,29 +37,23 @@ const GA_ID = "G-4FLC2T40F9";
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-PNH455WH');
         </script>
+
         <script is:inline define:vars={{ GA_ID }}>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            
             // Denegar por defecto
-            gtag('consent', 'default', {
-                'ad_storage': 'denied',
-                'analytics_storage': 'denied'
-            });
-            
+            gtag('consent', 'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied' });
             gtag('js', new Date());
             gtag('config', GA_ID);
         </script>
-        
         <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
     </head>
 
-    <body class="bg-transparent text-white font-sans antialiased overflow-x-hidden relative">
+    <body class="bg-[#050505] text-white font-sans antialiased overflow-x-hidden relative">
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNH455WH"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </noscript>
-        <div class="fixed inset-0 bg-[#050505] -z-50"></div>
 
         <div id="orb-container" class="fixed top-0 left-0 w-full h-[800px] -z-10 transition-opacity duration-500 ease-out opacity-90">
             <Orb client:load hue={0} hoverIntensity={0.8} rotateOnHover={true} backgroundColor="#050505" />
@@ -70,14 +64,13 @@ const GA_ID = "G-4FLC2T40F9";
         <CookieBanner />
 
         <script>
-            // Orb Opacity
+            // 1. Orb Opacity
             const orbContainer = document.getElementById("orb-container");
             window.addEventListener("scroll", () => {
-                if (!orbContainer) return;
-                orbContainer.style.opacity = Math.max(0, 0.9 - window.scrollY / 600).toString();
+                if (orbContainer) orbContainer.style.opacity = Math.max(0, 0.9 - window.scrollY / 600).toString();
             });
 
-            // SCROLL SUAVE (LENIS)
+            // 2. Scroll Suave (LENIS)
             import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm";
             const lenis = new Lenis({
                 duration: 1.2,
@@ -106,7 +99,7 @@ const GA_ID = "G-4FLC2T40F9";
                 });
             });
 
-            // ANIMACIONES SCROLL
+            // 3. Animaciones Scroll
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -123,42 +116,29 @@ const GA_ID = "G-4FLC2T40F9";
 </html>
 
 <style is:global>
-    .font-fact {
-        font-family: 'Kanit', sans-serif;
-        font-style: italic;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 0.02em;
-    }
-
+    .font-fact { font-family: 'Kanit', sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; }
     ::-webkit-scrollbar { display: none; }
     html { scrollbar-width: none; background-color: #050505; }
     body { -ms-overflow-style: none; }
-
-    /* ANIMACIONES */
-    .animate-on-scroll {
-        opacity: 0;
-        transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        will-change: opacity, transform;
+    
+    /* ANIMACIONES ACTIVAS */
+    .animate-on-scroll { 
+        opacity: 0; /* Empieza invisible */
+        transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
+        will-change: opacity, transform; 
     }
     .animate-on-scroll.fade-up { transform: translateY(40px); }
     .animate-on-scroll.from-left { transform: translateX(-40px); }
     .animate-on-scroll.from-right { transform: translateX(40px); }
     
-    .animate-on-scroll.is-visible {
-        opacity: 1;
-        transform: translate(0, 0);
+    .animate-on-scroll.is-visible { 
+        opacity: 1; 
+        transform: translate(0, 0); 
     }
-
-    /* GLOW TÍTULOS (NEÓN) */
-    .title-glow {
-        text-shadow: 0 0 10px rgba(255,255,255,0);
-        transition: text-shadow 1s ease;
-    }
-    .title-glow.is-visible {
-        text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2); 
-    }
-
+    
+    .title-glow { text-shadow: 0 0 10px rgba(255,255,255,0); transition: text-shadow 1s ease; }
+    .title-glow.is-visible { text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2); }
+    
     .delay-100 { transition-delay: 100ms; }
     .delay-200 { transition-delay: 200ms; }
 </style>
