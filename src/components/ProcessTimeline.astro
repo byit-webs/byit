@@ -1,131 +1,47 @@
 ---
-const steps = [
-  {
-    step: "01",
-    title: "Auditoría",
-    desc: "Analizamos tu situación y definimos la arquitectura técnica.",
-    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
-  },
-  {
-    step: "02",
-    title: "Desarrollo Puro",
-    desc: "Construimos tu búnker digital con Astro. Sin plantillas.",
-    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-  },
-  {
-    step: "03",
-    title: "Blindaje",
-    desc: "Seguridad por diseño y optimización de carga al milisegundo.",
-    icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z",
-  },
-  {
-    step: "04",
-    title: "Entrega Total",
-    desc: "Te damos las llaves. Propiedad 100% tuya. Despegue.",
-    icon: "M13 10V3L4 14h7v7l9-11h-7z",
-  },
-];
 ---
+<section class="py-10 px-4 w-full animate-on-scroll fade-up relative overflow-hidden">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="font-fact text-4xl md:text-6xl text-white mb-4 title-glow">
+                Tu Camino al Éxito
+            </h2>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm">Metodología ágil en 3 pasos.</p>
+        </div>
 
-<section class="py-24 relative z-10 reveal-on-scroll">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2
-      class="text-4xl md:text-5xl font-bold text-center text-white mb-20 fade-in-h2"
-    >
-      Tu camino al éxito
-    </h2>
+        <div class="relative pl-4 md:pl-0">
+            <div class="absolute left-[29px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/10 via-primary/50 to-primary/10 md:-translate-x-1/2"></div>
 
-    <div
-      class="relative flex flex-col md:flex-row justify-between items-start gap-8 md:gap-4"
-    >
-      <div
-        class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-white/5 -z-10"
-      >
-      </div>
-      <div
-        class="md:hidden absolute top-0 left-8 h-full w-0.5 bg-white/5 -z-10"
-      >
-      </div>
+            <div class="space-y-8 md:space-y-12 relative z-10">
+                
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-0 group relative">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right pl-16 md:pl-0 order-1">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-primary transition-colors">1. Auditoría & Diseño</h3>
+                        <p class="text-gray-400 text-xs md:text-sm">Analizamos tu marca y diseñamos una propuesta visual única en Figma.</p>
+                    </div>
+                    <div class="absolute left-[20px] md:left-1/2 top-0 md:top-1/2 w-5 h-5 bg-[#050505] border-2 border-primary rounded-full md:-translate-x-1/2 md:-translate-y-1/2 z-20 group-hover:scale-125 group-hover:bg-primary transition-all duration-300 shadow-[0_0_10px_#FF6363]"></div>
+                    <div class="hidden md:block w-1/2 order-2"></div>
+                </div>
 
-      {
-        steps.map((item) => (
-          <div class="timeline-item group relative flex md:flex-col items-center md:text-center gap-6 md:gap-0 w-full md:w-1/4 p-4 rounded-xl transition-all duration-300 hover:bg-white/[0.02]">
-            <div class="icon-wrapper relative flex-shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#050505] border border-white/10 flex items-center justify-center group-hover:border-primary/50 group-hover:shadow-[0_0_30px_rgba(255,99,99,0.2)] transition-all duration-500 z-10 md:mb-6">
-              <span class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-primary to-orange-500 rounded-full flex items-center justify-center text-[10px] font-bold text-black">
-                {item.step}
-              </span>
-              <svg
-                class="w-6 h-6 md:w-8 md:h-8 text-gray-400 group-hover:text-white transition-colors"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d={item.icon}
-                />
-              </svg>
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-0 group relative">
+                    <div class="hidden md:block w-1/2 order-1"></div>
+                    <div class="absolute left-[20px] md:left-1/2 top-0 md:top-1/2 w-5 h-5 bg-[#050505] border-2 border-primary rounded-full md:-translate-x-1/2 md:-translate-y-1/2 z-20 group-hover:scale-125 group-hover:bg-primary transition-all duration-300 shadow-[0_0_10px_#FF6363]"></div>
+                    <div class="w-full md:w-1/2 md:pl-12 pl-16 order-2">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-primary transition-colors">2. Desarrollo Astro</h3>
+                        <p class="text-gray-400 text-xs md:text-sm">Programamos tu web línea a línea. Sin plantillas pesadas, pura velocidad.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-0 group relative">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right pl-16 md:pl-0 order-1">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-primary transition-colors">3. Despegue</h3>
+                        <p class="text-gray-400 text-xs md:text-sm">Pruebas finales, optimización SEO y publicación en servidor global.</p>
+                    </div>
+                    <div class="absolute left-[20px] md:left-1/2 top-0 md:top-1/2 w-5 h-5 bg-[#050505] border-2 border-primary rounded-full md:-translate-x-1/2 md:-translate-y-1/2 z-20 group-hover:scale-125 group-hover:bg-primary transition-all duration-300 shadow-[0_0_10px_#FF6363]"></div>
+                    <div class="hidden md:block w-1/2 order-2"></div>
+                </div>
+
             </div>
-
-            <div class="flex flex-col md:items-center">
-              <h3 class="title text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                {item.title}
-              </h3>
-              <p class="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
-            </div>
-          </div>
-        ))
-      }
+        </div>
     </div>
-  </div>
 </section>
-
-<style>
-  /* Programmatic Hover Effects for Mobile Scroll */
-  @media (max-width: 768px) {
-    .timeline-item.hover-active {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .timeline-item.hover-active .icon-wrapper {
-      border-color: rgba(255, 99, 99, 0.5); /* primary/50 */
-      box-shadow: 0 0 30px rgba(255, 99, 99, 0.2);
-    }
-
-    .timeline-item.hover-active svg {
-      color: white;
-    }
-
-    .timeline-item.hover-active .title {
-      color: #ff6363; /* primary */
-    }
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    if (window.matchMedia("(max-width: 768px)").matches) {
-      const timelineItems = document.querySelectorAll(".timeline-item");
-
-      const observerOptions = {
-        root: null,
-        rootMargin: "-20% 0px -20% 0px", // Trigger in the middle of screen
-        threshold: 0.6,
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("hover-active");
-          } else {
-            entry.target.classList.remove("hover-active");
-          }
-        });
-      }, observerOptions);
-
-      timelineItems.forEach((item) => observer.observe(item));
-    }
-  });
-</script>

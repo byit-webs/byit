@@ -1,0 +1,79 @@
+---
+---
+<div id="cookie-banner" class="fixed bottom-0 left-0 w-full z-[9999] p-4 translate-y-full transition-transform duration-500 ease-out">
+  <div class="max-w-4xl mx-auto bg-[#0A0A0A]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+    
+    <div class="flex-1">
+      <h4 class="text-white font-bold mb-2 font-fact text-lg">Privacidad y Cookies</h4>
+      <p class="text-sm text-gray-400">
+        Usamos cookies para analizar el tráfico y mejorar la experiencia. 
+        <a href="/politica-privacidad" class="text-primary hover:underline">Leer política</a>.
+      </p>
+    </div>
+
+    <div class="flex gap-3 shrink-0">
+      <button id="cookie-reject" class="px-4 py-2 rounded-lg border border-white/10 text-gray-300 text-sm hover:bg-white/5 transition-colors">
+        Solo funcionales
+      </button>
+      <button id="cookie-accept" class="px-6 py-2 rounded-lg bg-white text-black font-bold text-sm hover:bg-gray-200 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+        Aceptar Todo
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script is:inline>
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const rejectBtn = document.getElementById('cookie-reject');
+
+  // Función para activar Analytics y enviar evento
+  function enableAnalytics() {
+    console.log("Cookies aceptadas: Activando medición.");
+    
+    if (typeof gtag === 'function') {
+      // 1. Actualizar permiso oficial de Google
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted'
+      });
+      
+      // 2. Disparar un evento para que TÚ lo veas en las gráficas de "Tiempo Real"
+      gtag('event', 'cookie_consent_given', {
+        'event_category': 'engagement',
+        'event_label': 'user_accepted_cookies'
+      });
+    }
+  }
+
+  // Comprobar si el usuario ya decidió en el pasado
+  const consent = localStorage.getItem('byit-cookie-consent');
+
+  if (consent === 'accepted') {
+    enableAnalytics(); // Si ya aceptó, activamos sin mostrar banner
+  } else if (!consent) {
+    // Si no ha decidido, mostrar banner con un pequeño retraso
+    setTimeout(() => {
+      banner.classList.remove('translate-y-full');
+    }, 1000);
+  }
+
+  // AL HACER CLIC EN ACEPTAR
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('byit-cookie-consent', 'accepted');
+    banner.classList.add('translate-y-full'); // Ocultar banner
+    enableAnalytics(); // Activar medición
+  });
+
+  // AL HACER CLIC EN RECHAZAR
+  rejectBtn.addEventListener('click', () => {
+    localStorage.setItem('byit-cookie-consent', 'rejected');
+    banner.classList.add('translate-y-full'); // Ocultar banner
+    
+    // Opcional: Enviar evento de rechazo (sin activar cookies de rastreo)
+    if (typeof gtag === 'function') {
+       gtag('event', 'cookie_consent_denied');
+    }
+  });
+</script>
