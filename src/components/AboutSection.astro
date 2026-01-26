@@ -1,52 +1,31 @@
 ---
 ---
-<section id="quienes-somos" class="py-8">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="fade-in-h2 hover-char text-4xl md:text-5xl font-bold text-center text-white mb-8">Quiénes Somos</h2>
+<section id="quienes-somos" class="py-8 w-full animate-on-scroll relative overflow-hidden">
+  
+  <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -z-20 pointer-events-none opacity-40"></div>
+  <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] -z-20 pointer-events-none opacity-40"></div>
+
+  <div class="max-w-5xl mx-auto text-center relative z-10 px-4">
+    <h2 class="font-fact text-4xl md:text-6xl text-center mb-12 text-white drop-shadow-lg title-glow">
+      Quiénes Somos
+    </h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-      <div class="about-card about-card-slide-left p-6 bg-surface border border-white/5 rounded-xl hover:border-primary/30 transition-all group min-h-[160px] flex flex-col justify-center items-center relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10"></div>
-        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-3 text-primary font-bold text-xl border border-white/10 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,99,99,0.2)]">D</div>
-        <h3 class="text-lg font-bold text-white mb-1">Dorian García</h3>
-        <p class="text-[10px] text-primary uppercase tracking-[0.2em] font-bold">Infraestructura</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <div class="about-card p-10 bg-[#0A0A0A] border border-white/5 rounded-3xl transition-all duration-500 group hover:scale-[1.02] hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_10px_40px_-10px_rgba(255,99,99,0.2)] flex flex-col justify-center items-center relative overflow-hidden shadow-lg">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full blur-[60px] -z-10 transition-all group-hover:bg-primary/15 animate-pulse-slow"></div>
+        <div class="w-24 h-24 bg-[#050505] rounded-full flex items-center justify-center mb-6 text-primary font-bold text-3xl border border-white/10 group-hover:scale-110 group-hover:border-primary transition-all duration-500 shadow-[0_0_30px_rgba(255,99,99,0.2)] font-fact relative z-10">D</div>
+        <h3 class="text-2xl font-bold text-white mb-2 relative z-10 group-hover:text-primary transition-colors">Dorian García</h3>
+        <p class="text-sm text-primary/80 uppercase tracking-[0.25em] font-bold relative z-10 font-fact">Infraestructura & Backend</p>
       </div>
       
-      <div class="about-card about-card-slide-right p-6 bg-surface border border-white/5 rounded-xl hover:border-secondary/30 transition-all group min-h-[160px] flex flex-col justify-center items-center relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-32 h-32 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
-        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-3 text-secondary font-bold text-xl border border-white/10 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(139,92,246,0.2)]">M</div>
-        <h3 class="text-lg font-bold text-white mb-1">Miguel Crespo</h3>
-        <p class="text-[10px] text-secondary uppercase tracking-[0.2em] font-bold">Experiencia de Usuario & Frontend</p>
+      <div class="about-card p-10 bg-[#0A0A0A] border border-white/5 rounded-3xl transition-all duration-500 group hover:scale-[1.02] hover:-translate-y-2 hover:border-secondary/50 hover:shadow-[0_10px_40px_-10px_rgba(139,92,246,0.2)] flex flex-col justify-center items-center relative overflow-hidden shadow-lg">
+        <div class="absolute top-0 left-0 w-48 h-48 bg-secondary/5 rounded-full blur-[60px] -z-10 transition-all group-hover:bg-secondary/15 animate-pulse-slow"></div>
+        <div class="w-24 h-24 bg-[#050505] rounded-full flex items-center justify-center mb-6 text-secondary font-bold text-3xl border border-white/10 group-hover:scale-110 group-hover:border-secondary transition-all duration-500 shadow-[0_0_30px_rgba(139,92,246,0.2)] font-fact relative z-10">M</div>
+        <h3 class="text-2xl font-bold text-white mb-2 relative z-10 group-hover:text-secondary transition-colors">Miguel Crespo</h3>
+        <p class="text-sm text-secondary/80 uppercase tracking-[0.25em] font-bold relative z-10 font-fact">Frontend & UX/UI</p>
       </div>
+      
     </div>
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const quienesSomosH2 = document.querySelector('#quienes-somos .fade-in-h2');
-    const cards = document.querySelectorAll('.about-card');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (entry.target.classList.contains('fade-in-h2')) entry.target.classList.add('fade-in-visible');
-          if (entry.target.classList.contains('about-card')) entry.target.classList.add('slide-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    
-    if (quienesSomosH2) observer.observe(quienesSomosH2);
-    cards.forEach(card => observer.observe(card));
-  });
-</script>
-
-<style>
-  .fade-in-h2 { opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-out, transform 1.5s ease-out; }
-  .fade-in-h2.fade-in-visible { opacity: 1; transform: translateY(0); }
-  .about-card { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-  .about-card-slide-left { transform: translateX(-60px); }
-  .about-card-slide-right { transform: translateX(60px); }
-  .about-card.slide-in { opacity: 1; transform: translateX(0); }
-</style>

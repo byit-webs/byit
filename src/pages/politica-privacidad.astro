@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Política de Privacidad | ByIt">
+  <Navbar />
+  
+  <main class="relative pt-32 pb-20 px-4 sm:px-6 relative z-10 w-full overflow-x-hidden min-h-screen">
+    
+    <section class="max-w-4xl mx-auto py-12">
+      <h1 class="font-fact text-4xl md:text-5xl text-white mb-8 title-glow">Política de Privacidad</h1>
+      
+      <div class="prose prose-invert prose-lg text-gray-300 max-w-none space-y-8">
+        
+        <div class="p-6 bg-[#0F0F0F]/50 border border-white/10 rounded-2xl backdrop-blur-md">
+          <p class="lead text-xl text-white">
+            En <strong>ByIt</strong>, nos tomamos la seguridad de tus datos tan en serio como la de nuestro código. Esta política detalla cómo tratamos la información que compartes con nosotros.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-3 font-fact">1. Responsable del Tratamiento</h3>
+          <p><strong>Identidad:</strong> ByIt Agency</p>
+          <p><strong>Email de contacto:</strong> <a href="mailto:byit.webs@gmail.com" class="text-primary hover:underline">byit.webs@gmail.com</a></p>
+          <p><strong>Actividad:</strong> Desarrollo y diseño web de alto rendimiento.</p>
+        </div>
+
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-3 font-fact">2. Finalidad de los datos</h3>
+          <p>En ByIt tratamos la información que nos facilitan las personas interesadas con el fin de:</p>
+          <ul class="list-disc pl-5 space-y-2 mt-2">
+            <li><strong>Formulario de Contacto:</strong> Atender tu solicitud de auditoría, presupuesto o información sobre nuestros servicios (Landing, Web Corporativa, E-Commerce).</li>
+            <li><strong>Relación Contractual:</strong> En caso de contratar un servicio, para la gestión administrativa, fiscal y contable.</li>
+          </ul>
+          <p class="mt-4 text-sm text-gray-500">No utilizaremos tus datos para enviar spam ni los venderemos a terceros.</p>
+        </div>
+
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-3 font-fact">3. Legitimación</h3>
+          <p>La base legal para el tratamiento de sus datos es:</p>
+          <ul class="list-disc pl-5 space-y-2 mt-2">
+            <li><strong>Consentimiento:</strong> Al rellenar el formulario y marcar la casilla de aceptación, nos das permiso expreso para responderte.</li>
+            <li><strong>Ejecución de contrato:</strong> Si contratas nuestros servicios, el tratamiento es necesario para la prestación del mismo.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-3 font-fact">4. Destinatarios</h3>
+          <p>Tus datos no se cederán a terceros, salvo obligación legal o proveedores tecnológicos necesarios para el servicio (ej: hosting) que cumplen con la normativa de seguridad.</p>
+        </div>
+
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-3 font-fact">5. Tus Derechos</h3>
+          <p>Tienes derecho a acceder, rectificar y suprimir los datos, así como otros derechos indicados en la normativa RGPD. Para ejercerlos, envía un email a <span class="text-primary">byit.webs@gmail.com</span>.</p>
+        </div>
+
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-3 font-fact">6. Analítica y Terceros</h3>
+          <p>Esta web utiliza servicios de análisis de terceros para entender cómo se usa el sitio y optimizar la experiencia:</p>
+          <ul class="list-disc pl-5 space-y-2 mt-2">
+            <li><strong>Google Analytics 4 (GA4):</strong> Propiedad de Google Ireland Ltd. Recopila datos anónimos de navegación (IP anonimizada, dispositivo, navegador) solo si nos das tu consentimiento explícito en el banner de cookies.</li>
+            <li><strong>Google Tag Manager:</strong> Herramienta de gestión de etiquetas que facilita la implementación de códigos de seguimiento de forma segura.</li>
+          </ul>
+          <p class="mt-4 text-sm text-gray-400">Puedes revocar tu consentimiento en cualquier momento borrando las cookies de tu navegador.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Estilos específicos para texto legal */
+  h3 { color: #fff; margin-top: 2rem; }
+  strong { color: #fff; }
+  /* Asegurar legibilidad en listas */
+  ul li { color: #d1d5db; }
+</style>
