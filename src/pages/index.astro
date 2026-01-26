@@ -1,107 +1,225 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import AboutSection from '../components/AboutSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import ServiceCard from '../components/ServiceCard.astro';
-import MagicInput from '../components/MagicInput.astro';
-import SocialLinks from '../components/SocialLinks.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import ScrollReveal from '../components/ScrollReveal.astro';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import AboutSection from "../components/AboutSection.astro";
+import FAQSection from "../components/FAQSection.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import MagicInput from "../components/MagicInput.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
 
-import ProcessTimeline from '../components/ProcessTimeline.astro';
-import Portfolio from '../components/Portfolio.astro';
-import PricingSection from '../components/PricingSection.astro';
+import ProcessTimeline from "../components/ProcessTimeline.astro";
+import Portfolio from "../components/Portfolio.astro";
+import PricingSection from "../components/PricingSection.astro";
 
 const services = [
-  { title: "Velocidad Extrema", description: "Sitios web ultrarrápidos con Astro. Optimizado al milisegundo.", icon: "speed" },
-  { title: "Búnker Digital", description: "Seguridad por diseño. Sin bases de datos vulnerables.", icon: "shield" },
-  { title: "Trato Directo", description: "Comunicación directa con los desarrolladores. Sin comerciales.", icon: "support" }
+  {
+    title: "Velocidad Extrema",
+    description:
+      "Sitios web ultrarrápidos con Astro. Optimizado al milisegundo.",
+    icon: "speed",
+  },
+  {
+    title: "Búnker Digital",
+    description: "Seguridad por diseño. Sin bases de datos vulnerables.",
+    icon: "shield",
+  },
+  {
+    title: "Trato Directo",
+    description:
+      "Comunicación directa con los desarrolladores. Sin comerciales.",
+    icon: "support",
+  },
 ];
 ---
 
 <Layout title="Byit - Desarrollo Web de Alto Rendimiento">
-    
-    <Navbar />
+  <Navbar />
 
-    <div class="fixed inset-0 w-full h-full pointer-events-none -z-20 overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(255,99,99,0.60)_0%,transparent_65%)] blur-[90px] mix-blend-screen animate-pulse-slow"></div>
-        <div class="absolute top-[10%] right-[-10%] w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(139,92,246,0.50)_0%,transparent_60%)] blur-[110px] mix-blend-screen"></div>
-        <div class="absolute bottom-[-10%] left-[-5%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,140,0,0.45)_0%,transparent_60%)] blur-[100px] mix-blend-screen"></div>
+  <div
+    class="fixed inset-0 w-full h-full pointer-events-none -z-20 overflow-hidden"
+  >
+    <div
+      class="absolute top-[-10%] left-[-10%] w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(255,99,99,0.60)_0%,transparent_65%)] blur-[90px] mix-blend-screen animate-pulse-slow"
+    >
     </div>
+    <div
+      class="absolute top-[10%] right-[-10%] w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(139,92,246,0.50)_0%,transparent_60%)] blur-[110px] mix-blend-screen"
+    >
+    </div>
+    <div
+      class="absolute bottom-[-10%] left-[-5%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,140,0,0.45)_0%,transparent_60%)] blur-[100px] mix-blend-screen"
+    >
+    </div>
+  </div>
 
-    <main class="relative pt-20 px-4 sm:px-6 relative z-10 w-full overflow-x-hidden">
-    
+  <main
+    class="relative pt-20 px-4 sm:px-6 relative z-10 w-full overflow-x-hidden"
+  >
     <div class="pb-2">
-        <Hero />
+      <Hero />
     </div>
 
-    <section id="servicios" class="max-w-6xl mx-auto py-6 flex flex-col items-center relative z-10 w-full animate-on-scroll fade-up">
-        <h2 class="font-fact text-4xl md:text-6xl text-center text-white mb-2 title-glow">
-            Arquitectura Digital
-        </h2>
-        
-        <p class="text-gray-400 max-w-xl mx-auto text-center text-sm md:text-base mb-8">
-            Ingeniería de precisión diseñada para escalar.
-        </p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full px-2">
-            {services.map((service, i) => (
-                <div class={`h-[280px] delay-${i * 100}`}>
-                  <ServiceCard title={service.title} description={service.description} icon={service.icon} />
-                </div>
-            ))}
-        </div>
+    <section
+      id="servicios"
+      class="max-w-6xl mx-auto py-6 flex flex-col items-center relative z-10 w-full animate-on-scroll fade-up"
+    >
+      <h2
+        class="font-fact text-4xl md:text-6xl text-center text-white mb-2 title-glow"
+      >
+        Arquitectura Digital
+      </h2>
+
+      <p
+        class="text-gray-400 max-w-xl mx-auto text-center text-sm md:text-base mb-8"
+      >
+        Desarrollo web de precisión para escalar.
+      </p>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-4 w-full px-2 pt-10 px-6 sm:px-0"
+      >
+        {
+          services.map((service, i) => (
+            <div class={`h-[280px] delay-${i * 100} service-scroll-trigger`}>
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+              />
+            </div>
+          ))
+        }
+      </div>
     </section>
 
     <div class="w-full py-6 animate-on-scroll from-left">
-        <ProcessTimeline />
+      <ProcessTimeline />
     </div>
 
     <div class="w-full py-6 animate-on-scroll from-right">
-        <Portfolio />
+      <Portfolio />
     </div>
 
     <div id="precios" class="w-full py-6 animate-on-scroll fade-up">
-        <PricingSection />
+      <PricingSection />
     </div>
 
     <div class="w-full py-6 animate-on-scroll from-left">
-        <AboutSection />
+      <AboutSection />
     </div>
 
-    <section id="contacto" class="max-w-xl mx-auto py-8 px-4 animate-on-scroll fade-up w-full">
-        <div class="relative group">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[20px] opacity-60 group-hover:opacity-90 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-            <div class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/20 to-transparent">
-                <div class="bg-[#050505]/95 backdrop-blur-xl p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl py-8">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-80 shadow-[0_0_15px_#FF6363]"></div>
-                    
-                    <h2 class="font-fact text-3xl md:text-4xl text-white text-center mb-4 title-glow">Inicia tu Transformación</h2>
-                    <p class="text-center text-gray-400 mb-6 text-sm">Cuéntanos tu visión. Te respondemos en menos de 24h.</p>
-                    
-                    <form name="contacto" method="POST" data-netlify="true" class="space-y-4 relative z-10">
-                        <input type="hidden" name="form-name" value="contacto" />
-                        <div class="fade-in-input"><MagicInput name="nombre" placeholder="Nombre" required={true} /></div>
-                        <div class="fade-in-input"><MagicInput type="email" name="email" placeholder="Email Corporativo" required={true} /></div>
-                        <div class="fade-in-input"><MagicInput type="textarea" name="mensaje" placeholder="Detalles del proyecto..." required={true} /></div>
-                        <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.3)] mt-2">Solicitar Auditoría</button>
-                    </form>
-                </div>
-            </div>
+    <section
+      id="contacto"
+      class="max-w-xl mx-auto py-8 px-4 animate-on-scroll fade-up w-full"
+    >
+      <div class="relative group">
+        <div
+          class="absolute -inset-0.5 bg-gradient-to-r from-[#FF6363] via-[#8B5CF6] to-[#FF6363] rounded-2xl blur-[20px] opacity-60 group-hover:opacity-90 transition duration-1000 group-hover:duration-200 animate-tilt"
+        >
         </div>
+        <div
+          class="relative rounded-2xl p-[1px] bg-gradient-to-b from-white/20 to-transparent"
+        >
+          <div
+            class="bg-[#050505]/95 backdrop-blur-xl p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl py-8"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-80 shadow-[0_0_15px_#FF6363]"
+            >
+            </div>
+
+            <h2
+              class="font-fact text-3xl md:text-4xl text-white text-center mb-4 title-glow"
+            >
+              Inicia tu Transformación
+            </h2>
+            <p class="text-center text-gray-400 mb-6 text-sm">
+              Cuéntanos tu visión. Te respondemos en menos de 24h.
+            </p>
+
+            <form
+              name="contacto"
+              method="POST"
+              data-netlify="true"
+              class="space-y-4 relative z-10"
+            >
+              <input type="hidden" name="form-name" value="contacto" />
+              <div class="fade-in-input">
+                <MagicInput
+                  name="nombre"
+                  placeholder="Nombre"
+                  required={true}
+                />
+              </div>
+              <div class="fade-in-input">
+                <MagicInput
+                  type="email"
+                  name="email"
+                  placeholder="Email Corporativo"
+                  required={true}
+                />
+              </div>
+              <div class="fade-in-input">
+                <MagicInput
+                  type="textarea"
+                  name="mensaje"
+                  placeholder="Detalles del proyecto..."
+                  required={true}
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.3)] mt-2"
+                >Solicitar Auditoría</button
+              >
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="w-full py-6 animate-on-scroll fade-up">
-        <FAQSection />
+      <FAQSection />
     </div>
+  </main>
 
-    </main>
+  <Footer />
+  <SocialLinks />
 
-    <Footer />
-    <SocialLinks />
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Solo en móviles
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        // Seleccionamos .card (Servicios) y .timeline-item (Proceso)
+        const scrollElements = document.querySelectorAll(
+          ".service-scroll-trigger .card, .timeline-item",
+        );
 
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("hover-active");
+              } else {
+                entry.target.classList.remove("hover-active");
+              }
+            });
+          },
+          {
+            root: null,
+            // Activar cuando el elemento esté en el centro vertical de la pantalla (zona del 50%)
+            rootMargin: "-25% 0px -25% 0px",
+            threshold: 0.4,
+          },
+        );
+
+        scrollElements.forEach((el) => observer.observe(el));
+      }
+    });
+  </script>
 </Layout>
 
 <ScrollReveal />

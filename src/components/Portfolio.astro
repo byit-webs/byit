@@ -1,46 +1,151 @@
 ---
 const projects = [
-  { id: 1, title: "Barbería", desc: "Barbería Premium.", image: "/img/barbershop.png", tag: "Demo", link: "/demos/barbershop/index.html" },
-  { id: 2, title: "Taller Mecánico", desc: "Landing page.", image: "/img/paginataller.png", tag: "Demo", link: "/demos/taller/index.html" },
-  { id: 3, title: "Clínica Dental", desc: "Diseño corporativo.", image: "/img/paginaclinica.png", tag: "Demo", link: "/demos/clinica-dental/index.html" },
-  { id: 4, title: "Farmacia", desc: "Diseño interactivo.", image: "/img/farmacia.png", tag: "Demo", link: "/demos/farmacia/index.html" },
+  {
+    id: 1,
+    title: "Barbería",
+    desc: "Barbería Premium.",
+    image: "/img/barbershop.png",
+    tag: "Demo",
+    link: "/demos/barbershop/index.html",
+  },
+  {
+    id: 2,
+    title: "Taller Mecánico",
+    desc: "Landing page.",
+    image: "/img/paginataller.png",
+    tag: "Demo",
+    link: "/demos/taller/index.html",
+  },
+  {
+    id: 3,
+    title: "Clínica Dental",
+    desc: "Diseño corporativo.",
+    image: "/img/paginaclinica.png",
+    tag: "Demo",
+    link: "/demos/clinica-dental/index.html",
+  },
+  {
+    id: 4,
+    title: "Farmacia",
+    desc: "Diseño interactivo.",
+    image: "/img/farmacia.png",
+    tag: "Demo",
+    link: "/demos/farmacia/index.html",
+  },
 ];
 ---
-<section id="portafolio" class="py-8 px-4 w-full relative z-10 animate-on-scroll">
-  <div class="max-w-6xl mx-auto w-full">
+
+<section
+  id="portafolio"
+  class="py-8 px-4 w-full relative z-10 animate-on-scroll"
+>
+  <div class="max-w-6xl md:max-w-[90%] lg:max-w-6xl mx-auto w-full">
     <div class="text-center mb-8 px-4">
-      <h2 class="font-fact text-4xl md:text-6xl text-white mb-2 title-glow">Portafolio</h2>
-      <p class="text-gray-400 text-sm md:text-base">Resultados tangibles. Haz clic para probar las demos.</p>
+      <h2 class="font-fact text-4xl md:text-6xl text-white mb-2 title-glow">
+        Portafolio
+      </h2>
+      <p class="text-gray-400 text-sm md:text-base">
+        Resultados tangibles. Haz clic para probar las demos.
+      </p>
     </div>
-    
-    <div class="flex flex-col md:flex-row gap-3 h-[600px] md:h-[450px] w-full max-w-5xl mx-auto">
-      {projects.map((project, index) => (
-        <a href={project.link} target="_blank" rel="noopener noreferrer" class={`portfolio-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ease-in-out flex-1 hover:flex-[2] ${index === 1 ? "active" : ""}`} aria-label={`Ver proyecto ${project.title}`}>
-          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105" style={`background-image: url('${project.image}');`} />
-          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
-          <div class="absolute top-4 right-4 z-20">
-            <span class={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${project.tag === "Real" ? "bg-green-900/40 text-green-400 border-green-500/30" : "bg-orange-900/40 text-orange-400 border-orange-500/30"}`}>{project.tag}</span>
-          </div>
-          <div class="absolute bottom-0 left-0 w-full p-5 z-20 translate-y-2 transition-transform duration-500 content">
-            <h3 class="text-xl font-bold text-white mb-1">{project.title}</h3>
-            <p class="text-gray-300 text-xs opacity-80">{project.desc}</p>
-          </div>
-          <div class="absolute inset-0 border border-white/10 rounded-2xl hover:border-primary/50 transition-colors pointer-events-none" />
-        </a>
-      ))}
+
+    <div
+      class="flex flex-col md:flex-row gap-3 h-[600px] md:h-[450px] w-full max-w-5xl md:max-w-full mx-auto"
+    >
+      {
+        projects.map((project, index) => (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`portfolio-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ease-in-out flex-1 hover:flex-[2] ${index === 1 ? "active" : ""}`}
+            aria-label={`Ver proyecto ${project.title}`}
+          >
+            <div
+              class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+              style={`background-image: url('${project.image}');`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
+            <div class="absolute top-4 right-4 z-20">
+              <span
+                class={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${project.tag === "Real" ? "bg-green-900/40 text-green-400 border-green-500/30" : "bg-orange-900/40 text-orange-400 border-orange-500/30"}`}
+              >
+                {project.tag}
+              </span>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full p-5 z-20 translate-y-2 transition-transform duration-500 content">
+              <h3 class="text-xl font-bold text-white mb-1">{project.title}</h3>
+              <p class="text-gray-300 text-xs opacity-80">{project.desc}</p>
+            </div>
+            <div class="absolute inset-0 border border-white/10 rounded-2xl hover:border-primary/50 transition-colors pointer-events-none" />
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>
 <script>
   const cards = document.querySelectorAll(".portfolio-card");
-  const manualInteraction = () => { cards.forEach((card) => { card.addEventListener("mouseenter", () => { if (window.innerWidth >= 768) { cards.forEach((c) => c.classList.remove("active")); card.classList.add("active"); } }); card.addEventListener("click", (e) => { if (!card.classList.contains("active") && window.innerWidth < 768) { e.preventDefault(); cards.forEach((c) => c.classList.remove("active")); card.classList.add("active"); } }); }); };
+  const manualInteraction = () => {
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        if (window.innerWidth >= 768) {
+          cards.forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+        }
+      });
+      card.addEventListener("click", (e) => {
+        if (!card.classList.contains("active") && window.innerWidth < 768) {
+          e.preventDefault();
+          cards.forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+        }
+      });
+    });
+  };
   manualInteraction();
   let observer;
-  const initMobileObserver = () => { if (window.matchMedia("(max-width: 768px)").matches) { if (observer) return; const observerOptions = { root: null, rootMargin: "-40% 0px -40% 0px", threshold: 0 }; observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { cards.forEach((c) => c.classList.remove("active")); entry.target.classList.add("active"); } }); }, observerOptions); cards.forEach((card) => observer.observe(card)); } else { if (observer) { observer.disconnect(); observer = null; cards.forEach((c) => c.classList.remove("active")); } } };
+  const initMobileObserver = () => {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      if (observer) return;
+      const observerOptions = {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: 0,
+      };
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            cards.forEach((c) => c.classList.remove("active"));
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+      cards.forEach((card) => observer.observe(card));
+    } else {
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+        cards.forEach((c) => c.classList.remove("active"));
+      }
+    }
+  };
   document.addEventListener("DOMContentLoaded", initMobileObserver);
-  window.addEventListener("resize", () => { initMobileObserver(); });
+  window.addEventListener("resize", () => {
+    initMobileObserver();
+  });
 </script>
 <style>
-  .portfolio-card.active { flex: 3; }
-  @media (max-width: 768px) { .portfolio-card { flex: 1; min-height: 80px; } .portfolio-card.active { flex: 4; } }
+  .portfolio-card.active {
+    flex: 4;
+  }
+  @media (max-width: 768px) {
+    .portfolio-card {
+      flex: 1;
+      min-height: 80px;
+    }
+    .portfolio-card.active {
+      flex: 4;
+    }
+  }
 </style>
