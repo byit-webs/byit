@@ -106,28 +106,12 @@ const projects = [
   manualInteraction();
   let observer;
   const initMobileObserver = () => {
-    if (window.matchMedia("(max-width: 768px)").matches) {
-      if (observer) return;
-      const observerOptions = {
-        root: null,
-        rootMargin: "-40% 0px -40% 0px",
-        threshold: 0,
-      };
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            cards.forEach((c) => c.classList.remove("active"));
-            entry.target.classList.add("active");
-          }
-        });
-      }, observerOptions);
-      cards.forEach((card) => observer.observe(card));
-    } else {
-      if (observer) {
-        observer.disconnect();
-        observer = null;
-        cards.forEach((c) => c.classList.remove("active"));
-      }
+    // Scroll animation disabled on mobile as per user request.
+    // Manual interaction (click) is handled by manualInteraction() above.
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+      cards.forEach((c) => c.classList.remove("active"));
     }
   };
   document.addEventListener("DOMContentLoaded", initMobileObserver);
