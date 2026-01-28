@@ -14,7 +14,7 @@ const GA_ID = "G-4FLC2T40F9";
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#050505" />
         <meta
             name="description"
@@ -119,8 +119,9 @@ const GA_ID = "G-4FLC2T40F9";
                     ).toString();
             });
 
-            // 2. Scroll Suave (LENIS)
+            // 2. Scroll Suave (LENIS ACTIVADO EN MÓVIL)
             import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm";
+
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -128,9 +129,12 @@ const GA_ID = "G-4FLC2T40F9";
                 gestureDirection: "vertical",
                 smooth: true,
                 mouseMultiplier: 1,
-                smoothTouch: false, // CORRECTO: Usa scroll nativo en móvil (cero lag)
-                touchMultiplier: 2,
+
+                // === CAMBIOS PARA MÓVIL ===
+                smoothTouch: true, // ¡ACTIVADO! Lenis controla el touch
+                touchMultiplier: 2, // Sensibilidad del dedo (2 es estándar, ajústalo si va muy rápido)
             });
+
             function raf(time) {
                 lenis.raf(time);
                 requestAnimationFrame(raf);
@@ -175,42 +179,40 @@ const GA_ID = "G-4FLC2T40F9";
 </html>
 
 <style is:global>
-    /* === FIX DEFINITIVO SCROLL IOS === */
+    /* === AJUSTES PARA LENIS EN MÓVIL === */
+
+    html.lenis,
+    html.lenis body {
+        height: auto;
+    }
 
     html {
         background-color: #050505;
         height: auto;
         min-height: 100%;
 
-        /* 1. RESTAURAR EL SCROLL NATIVO */
-        /* 'visible' o 'auto' en HTML permite que la ventana maneje el scroll */
-        overflow-y: auto;
-        overflow-x: hidden;
+        /* IMPORTANTE: Si Lenis controla el touch, quitamos touch-action restrictivo */
+        /* touch-action: pan-y;  <-- LO QUITAMOS para que Lenis decida */
 
-        /* 2. PERMITIR EL REBOTE (Overscroll) */
-        /* Si bloqueas esto, iOS siente el scroll "muerto" o pegajoso */
-        overscroll-behavior: auto !important;
+        overscroll-behavior: auto; /* Dejar rebote visual */
 
-        /* 3. EVITAR LAG HORIZONTAL */
-        touch-action: pan-y;
+        /* Aseguramos que no haya scroll nativo compitiendo si Lenis está activo */
+        /* Pero necesitamos overflow para que funcione */
     }
 
     body {
         background-color: #050505;
         min-height: 100vh;
-        height: auto;
-
-        /* === LA CLAVE DEL ÉXITO === */
-        /* EL BODY NO DEBE TENER SCROLL. Debe ser VISIBLE para que */
-        /* el contenido fluya al HTML. Esto elimina el "Sticky Scroll". */
-        overflow-y: visible !important;
+        width: 100%;
         overflow-x: hidden;
-
-        /* Aseguramos que nada bloquee el toque */
-        touch-action: pan-y;
     }
 
-    /* === FIN DEL FIX === */
+    /* Clase que Lenis añade cuando está activo */
+    .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+    }
+
+    /* === ESTILOS GENERALES === */
 
     .font-fact {
         font-family: "Kanit", sans-serif;
@@ -220,7 +222,6 @@ const GA_ID = "G-4FLC2T40F9";
         letter-spacing: 0.02em;
     }
 
-    /* Ocultar scrollbar visualmente pero mantener funcionalidad */
     ::-webkit-scrollbar {
         display: none;
     }
