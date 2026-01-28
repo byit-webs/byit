@@ -3,19 +3,40 @@
 @tailwind utilities;
 
 @layer base {
+  /* RESET TOTAL PARA LENIS Y MÓVIL */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
   html {
-    @apply scroll-smooth;
+    /* ¡NUNCA USES scroll-smooth CON LENIS! */
+    /* @apply scroll-smooth;  <-- ESTO ERA EL ASESINO */
+    
     background-color: #050505;
-    overscroll-behavior-y: none;
+    
+    /* REGLAS PARA FLUIDEZ MÁXIMA EN MÓVIL */
+    touch-action: pan-y;       /* Solo permite scroll vertical, elimina lag de zoom/gestos */
+    overscroll-behavior: auto; /* Permite el rebote nativo (es necesario para que no se trabe) */
+    
+    /* Evitar alturas fijas que confunden al navegador */
+    height: auto;
+    min-height: 100%;
   }
   
   body {
-    @apply antialiased text-gray-100 overflow-x-hidden min-h-dvh;
+    @apply antialiased text-gray-100;
     background-color: #050505;
-    will-change: transform;
+    
+    /* Aseguramos que el contenido crezca libremente */
+    min-height: 100vh;
+    width: 100%;
+    
+    /* 'clip' es mejor que 'hidden' para móviles modernos */
+    overflow-x: clip; 
+    overflow-y: visible; /* Deja que el HTML maneje el scroll */
   }
 
-  /* Scrollbar Fina */
+  /* Estética Scrollbar (Solo PC) */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -36,7 +57,6 @@
 }
 
 @layer components {
-  /* Utility para tarjetas si la necesitas en otro lado */
   .glass-panel {
     @apply bg-black/40 backdrop-blur-xl border border-white/5 shadow-2xl;
   }
