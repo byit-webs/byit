@@ -5,12 +5,13 @@
 @layer base {
   html {
     @apply scroll-smooth;
-    background-color: #000000;
+    background-color: #050505;
     overscroll-behavior-y: none;
   }
   
   body {
     @apply antialiased text-gray-100 overflow-x-hidden min-h-dvh;
+    background-color: #050505;
     will-change: transform;
   }
 
@@ -19,7 +20,7 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #000000;
+    background: #050505;
   }
   ::-webkit-scrollbar-thumb {
     background: #333;
