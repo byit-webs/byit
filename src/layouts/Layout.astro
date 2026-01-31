@@ -27,8 +27,13 @@ const GA_ID = "G-4FLC2T40F9";
         <meta property="og:image" content="/img/og-image.png" />
         <title>{title}</title>
 
+        <!-- DNS Preconnect para recursos externos -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+        <!-- Fuentes con display=swap para evitar FOIT -->
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
@@ -38,7 +43,8 @@ const GA_ID = "G-4FLC2T40F9";
             rel="stylesheet"
         />
 
-        <script is:inline>
+        <!-- Google Tag Manager con Partytown (corre en Web Worker) -->
+        <script type="text/partytown">
             (function (w, d, s, l, i) {
                 w[l] = w[l] || [];
                 w[l].push({
@@ -54,7 +60,8 @@ const GA_ID = "G-4FLC2T40F9";
             })(window, document, "script", "dataLayer", "GTM-PNH455WH");
         </script>
 
-        <script is:inline define:vars={{ GA_ID }}>
+        <!-- Google Analytics con Partytown -->
+        <script type="text/partytown" define:vars={{ GA_ID }}>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);
@@ -67,7 +74,7 @@ const GA_ID = "G-4FLC2T40F9";
             gtag("config", GA_ID);
         </script>
         <script
-            is:inline
+            type="text/partytown"
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         ></script>
@@ -119,42 +126,57 @@ const GA_ID = "G-4FLC2T40F9";
                     ).toString();
             });
 
-            // 2. Scroll Suave (LENIS ACTIVADO EN MÓVIL)
-            import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm";
+            // 2. Scroll Suave con Lenis - Carga diferida después de FCP
+            let lenis;
 
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                direction: "vertical",
-                gestureDirection: "vertical",
-                smooth: true,
-                mouseMultiplier: 1,
+            // Cargar Lenis después de que la página esté lista (no bloquea renderizado inicial)
+            async function initLenis() {
+                // Importación dinámica para no bloquear el critical path
+                const LenisModule =
+                    await import("https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm");
+                const Lenis = LenisModule.default;
 
-                // === CAMBIOS PARA MÓVIL ===
-                smoothTouch: true, // ¡ACTIVADO! Lenis controla el touch
-                touchMultiplier: 2, // Sensibilidad del dedo (2 es estándar, ajústalo si va muy rápido)
-            });
-
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-
-            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-                anchor.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    const href = this.getAttribute("href");
-                    if (href && href !== "#") {
-                        const target = document.querySelector(href);
-                        if (target)
-                            lenis.scrollTo(target, {
-                                offset: -20,
-                                duration: 1.5,
-                            });
-                    }
+                lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    direction: "vertical",
+                    gestureDirection: "vertical",
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: true,
+                    touchMultiplier: 2,
                 });
-            });
+
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+
+                // Smooth scroll para anclas
+                document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                    anchor.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const href = this.getAttribute("href");
+                        if (href && href !== "#") {
+                            const target = document.querySelector(href);
+                            if (target)
+                                lenis.scrollTo(target, {
+                                    offset: -20,
+                                    duration: 1.5,
+                                });
+                        }
+                    });
+                });
+            }
+
+            // Iniciar después de que el DOM esté listo
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initLenis);
+            } else {
+                // Ya está listo, iniciar inmediatamente
+                initLenis();
+            }
 
             // 3. Animaciones Scroll
             const observerOptions = {

@@ -8,11 +8,13 @@ import partytown from '@astrojs/partytown';
 export default defineConfig({
   integrations: [tailwind(), react(), partytown({
     config: {
-      forward: ["dataLayer.push"]
+      forward: ["dataLayer.push", "gtag"],
+      debug: false,
     }
   })],
   output: 'static',
   build: {
-    assets: '_assets'
+    assets: '_assets',
+    inlineStylesheets: 'auto',
   }
 });
