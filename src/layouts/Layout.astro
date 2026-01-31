@@ -7,6 +7,7 @@ interface Props {
 }
 const { title } = Astro.props;
 
+// TU ID DE ANALYTICS
 const GA_ID = "G-4FLC2T40F9";
 ---
 
@@ -20,8 +21,20 @@ const GA_ID = "G-4FLC2T40F9";
             name="description"
             content="Byit: Desarrollo web de alto rendimiento."
         />
-        <link rel="icon" type="image/png" href="/img/favicon.png" />
-        <link rel="apple-touch-icon" href="/img/favicon.png" />
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/img/favicon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/img/favicon.png"
+        />
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.png" />
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/img/og-image.png" />
@@ -116,7 +129,7 @@ const GA_ID = "G-4FLC2T40F9";
         <CookieBanner />
 
         <script>
-            // 1. Orb Opacity
+            // 1. Orb Opacity logic
             const orbContainer = document.getElementById("orb-container");
             window.addEventListener("scroll", () => {
                 if (orbContainer)
@@ -126,59 +139,44 @@ const GA_ID = "G-4FLC2T40F9";
                     ).toString();
             });
 
-            // 2. Scroll Suave con Lenis - Carga diferida después de FCP
-            let lenis;
+            // 2. Scroll Suave (LENIS ACTIVADO EN MÓVIL)
+            import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm";
 
-            // Cargar Lenis después de que la página esté lista (no bloquea renderizado inicial)
-            async function initLenis() {
-                // Importación dinámica para no bloquear el critical path
-                const LenisModule =
-                    await import("https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm");
-                const Lenis = LenisModule.default;
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: "vertical",
+                gestureDirection: "vertical",
+                smooth: true,
+                mouseMultiplier: 1,
 
-                lenis = new Lenis({
-                    duration: 1.2,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    direction: "vertical",
-                    gestureDirection: "vertical",
-                    smooth: true,
-                    mouseMultiplier: 1,
-                    smoothTouch: true,
-                    touchMultiplier: 2,
-                });
+                // === CAMBIOS PARA MÓVIL ===
+                smoothTouch: true, // ¡ACTIVADO! Lenis controla el touch
+                touchMultiplier: 2, // Sensibilidad del dedo (2 es estándar, ajústalo si va muy rápido)
+            });
 
-                function raf(time) {
-                    lenis.raf(time);
-                    requestAnimationFrame(raf);
-                }
+            function raf(time) {
+                lenis.raf(time);
                 requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
 
-                // Smooth scroll para anclas
-                document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-                    anchor.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        const href = this.getAttribute("href");
-                        if (href && href !== "#") {
-                            const target = document.querySelector(href);
-                            if (target)
-                                lenis.scrollTo(target, {
-                                    offset: -20,
-                                    duration: 1.5,
-                                });
-                        }
-                    });
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute("href");
+                    if (href && href !== "#") {
+                        const target = document.querySelector(href);
+                        if (target)
+                            lenis.scrollTo(target, {
+                                offset: -20,
+                                duration: 1.5,
+                            });
+                    }
                 });
-            }
+            });
 
-            // Iniciar después de que el DOM esté listo
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", initLenis);
-            } else {
-                // Ya está listo, iniciar inmediatamente
-                initLenis();
-            }
-
-            // 3. Animaciones Scroll
+            // 3. Animaciones Scroll (Intersection Observer)
             const observerOptions = {
                 root: null,
                 rootMargin: "0px",
@@ -212,14 +210,7 @@ const GA_ID = "G-4FLC2T40F9";
         background-color: #050505;
         height: auto;
         min-height: 100%;
-
-        /* IMPORTANTE: Si Lenis controla el touch, quitamos touch-action restrictivo */
-        /* touch-action: pan-y;  <-- LO QUITAMOS para que Lenis decida */
-
-        overscroll-behavior: auto; /* Dejar rebote visual */
-
-        /* Aseguramos que no haya scroll nativo compitiendo si Lenis está activo */
-        /* Pero necesitamos overflow para que funcione */
+        overscroll-behavior: auto;
     }
 
     body {
@@ -251,6 +242,7 @@ const GA_ID = "G-4FLC2T40F9";
         scrollbar-width: none;
     }
 
+    /* ANIMACIONES */
     .animate-on-scroll {
         opacity: 0;
         transition:
@@ -272,6 +264,7 @@ const GA_ID = "G-4FLC2T40F9";
         transform: translate(0, 0);
     }
 
+    /* GLOW TEXTO */
     .title-glow {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0);
         transition: text-shadow 1s ease;
