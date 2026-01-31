@@ -10,6 +10,9 @@
     scroll-behavior: smooth;
     min-height: 100vh;
     min-height: -webkit-fill-available;
+    /* Prevenir overscroll bounce - CRÍTICO para móviles */
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: none;
   }
   
   body {
@@ -20,6 +23,9 @@
     width: 100%;
     overflow-x: hidden;
     position: relative;
+    /* Prevenir overscroll bounce - CRÍTICO para móviles */
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: none;
   }
 
   /* Scrollbar personalizado (Solo PC) */

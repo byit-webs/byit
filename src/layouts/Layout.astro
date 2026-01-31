@@ -194,6 +194,15 @@ const GA_ID = "G-4FLC2T40F9";
     }
     html {
         scrollbar-width: none;
+        /* CRÍTICO: Prevenir overscroll bounce en móviles */
+        overscroll-behavior-y: none;
+        overscroll-behavior-x: none;
+    }
+
+    body {
+        /* CRÍTICO: Prevenir overscroll bounce en móviles */
+        overscroll-behavior-y: none;
+        overscroll-behavior-x: none;
     }
 
     /* Animaciones desactivadas para evitar sticky scroll */
