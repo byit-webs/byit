@@ -15,7 +15,10 @@ const GA_ID = "G-4FLC2T40F9";
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
         <meta name="theme-color" content="#050505" />
         <meta
             name="description"
@@ -102,8 +105,13 @@ const GA_ID = "G-4FLC2T40F9";
                 style="display:none;visibility:hidden"></iframe>
         </noscript>
 
-        <!-- Background absoluto que se extiende con el contenido -->
+        <!-- Background absoluto multicapa para móviles -->
         <div class="fixed inset-0 bg-[#050505] -z-50"></div>
+        <div
+            class="fixed top-0 left-0 w-full h-[200vh] bg-[#050505] -z-[60]"
+            style="transform: translateY(-50vh);"
+        >
+        </div>
 
         <!-- Fondo del Orb (gradientes animados) -->
 

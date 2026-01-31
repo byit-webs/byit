@@ -27,6 +27,32 @@
     overscroll-behavior-y: contain;
     overscroll-behavior-x: none;
   }
+  
+  /* Extensión de fondo para overscroll superior (pull down) */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -100vh;  /* Empieza 100vh ARRIBA del viewport */
+    left: 0;
+    width: 100%;
+    height: 100vh;  /* Cubre 100vh hacia arriba */
+    background-color: #050505;
+    z-index: -100;
+    pointer-events: none;
+  }
+  
+  /* Extensión de fondo para overscroll inferior */
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100vh;
+    left: 0;
+    width: 100%;
+    height: 200vh;
+    background-color: #050505;
+    z-index: -100;
+    pointer-events: none;
+  }
 
   /* Scrollbar personalizado (Solo PC) */
   ::-webkit-scrollbar {
