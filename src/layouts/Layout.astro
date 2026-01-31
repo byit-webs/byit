@@ -93,7 +93,7 @@ const GA_ID = "G-4FLC2T40F9";
         ></script>
     </head>
 
-    <body class="bg-transparent text-white font-sans antialiased relative">
+    <body class="bg-[#050505] text-white font-sans antialiased relative">
         <noscript>
             <iframe
                 src="https://www.googletagmanager.com/ns.html?id=GTM-PNH455WH"
@@ -102,22 +102,14 @@ const GA_ID = "G-4FLC2T40F9";
                 style="display:none;visibility:hidden"></iframe>
         </noscript>
 
-        <!-- Fondo fijo que cubre todo el área de scroll -->
-        <div
-            style="position: fixed; top: -100vh; left: 0; width: 100%; height: 500vh; z-index: -9999; background-color: #050505; pointer-events: none;"
-        >
-            <div
-                class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent"
-            >
-            </div>
-        </div>
+        <!-- Fondo del Orb (gradientes animados) -->
 
         <div
             id="orb-container"
             class="fixed top-0 left-0 w-full h-[800px] -z-10 transition-opacity duration-500 ease-out opacity-90"
         >
             <Orb
-                client:load
+                client:idle
                 hue={0}
                 hoverIntensity={0.6}
                 rotateOnHover={true}
@@ -140,32 +132,8 @@ const GA_ID = "G-4FLC2T40F9";
                     ).toString();
             });
 
-            // 2. Scroll Suave con Lenis - SOLO EN DESKTOP (móvil usa scroll nativo)
-            import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm";
-
-            let lenis;
-            const isMobile = window.innerWidth < 768;
-
-            // Solo inicializar Lenis en DESKTOP - en móvil el scroll nativo es más fluido
-            if (!isMobile) {
-                lenis = new Lenis({
-                    duration: 1.2,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    direction: "vertical",
-                    gestureDirection: "vertical",
-                    smooth: true,
-                    mouseMultiplier: 1,
-                    smoothTouch: false, // DESACTIVADO - evita conflictos en móvil
-                });
-
-                function raf(time) {
-                    lenis.raf(time);
-                    requestAnimationFrame(raf);
-                }
-                requestAnimationFrame(raf);
-            }
-
-            // Smooth scroll para anclas (funciona con y sin Lenis)
+            // 2. Smooth Scroll Nativo (sin librerías - máximo rendimiento)
+            // Enlaces de ancla con scroll suave
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 anchor.addEventListener("click", function (e) {
                     e.preventDefault();
@@ -173,25 +141,18 @@ const GA_ID = "G-4FLC2T40F9";
                     if (href && href !== "#") {
                         const target = document.querySelector(href);
                         if (target) {
-                            if (lenis) {
-                                // Desktop con Lenis
-                                lenis.scrollTo(target, {
-                                    offset: -20,
-                                    duration: 1.5,
-                                });
-                            } else {
-                                // Móvil con scroll nativo suave
-                                target.scrollIntoView({
-                                    behavior: "smooth",
-                                    block: "start",
-                                });
-                            }
+                            target.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            });
                         }
                     }
                 });
             });
 
-            // 3. Animaciones Scroll (Intersection Observer)
+            // 3. Animaciones Scroll (DESACTIVADAS - causaban sticky scroll)
+            // Las animaciones se activarán via CSS hover/visible states
+            /*
             const observerOptions = {
                 root: null,
                 rootMargin: "0px",
@@ -209,37 +170,12 @@ const GA_ID = "G-4FLC2T40F9";
             document
                 .querySelectorAll(".animate-on-scroll, .title-glow")
                 .forEach((el) => observer.observe(el));
+            */
         </script>
     </body>
 </html>
 
 <style is:global>
-    /* === AJUSTES PARA LENIS EN MÓVIL === */
-
-    html.lenis,
-    html.lenis body {
-        height: auto;
-    }
-
-    html {
-        background-color: #050505;
-        height: auto;
-        min-height: 100%;
-        overscroll-behavior: auto;
-    }
-
-    body {
-        background-color: #050505;
-        min-height: 100vh;
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    /* Clase que Lenis añade cuando está activo */
-    .lenis.lenis-smooth {
-        scroll-behavior: auto !important;
-    }
-
     /* === ESTILOS GENERALES === */
 
     .font-fact {
@@ -257,34 +193,13 @@ const GA_ID = "G-4FLC2T40F9";
         scrollbar-width: none;
     }
 
-    /* ANIMACIONES */
+    /* Animaciones desactivadas para evitar sticky scroll */
     .animate-on-scroll {
-        opacity: 0;
-        transition:
-            opacity 0.8s ease-out,
-            transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        will-change: opacity, transform;
-    }
-    .animate-on-scroll.fade-up {
-        transform: translateY(40px);
-    }
-    .animate-on-scroll.from-left {
-        transform: translateX(-40px);
-    }
-    .animate-on-scroll.from-right {
-        transform: translateX(40px);
-    }
-    .animate-on-scroll.is-visible {
         opacity: 1;
         transform: translate(0, 0);
     }
 
-    /* GLOW TEXTO */
     .title-glow {
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0);
-        transition: text-shadow 1s ease;
-    }
-    .title-glow.is-visible {
         text-shadow:
             0 0 15px rgba(255, 255, 255, 0.45),
             0 0 30px rgba(255, 255, 255, 0.25);

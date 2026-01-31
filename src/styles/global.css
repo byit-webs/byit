@@ -3,43 +3,24 @@
 @tailwind utilities;
 
 @layer base {
-  /* RESET TOTAL PARA LENIS Y MÓVIL */
-  html.lenis, html.lenis body {
-    height: auto;
-  }
-
+  /* CONFIGURACIÓN ÓPTIMA PARA SCROLL NATIVO */
+  
   html {
-    /* ¡NUNCA USES scroll-smooth CON LENIS! */
-    /* @apply scroll-smooth;  <-- ESTO ERA EL ASESINO */
-    
-    background-color: #050505;
-    
-    /* SCROLL SUAVE NATIVO EN MÓVIL (Lenis solo en desktop) */
+    background-color: #050505 !important;
     scroll-behavior: smooth;
-    
-    /* REGLAS PARA FLUIDEZ MÁXIMA */
-    touch-action: pan-y;       /* Solo permite scroll vertical, elimina lag */
-    overscroll-behavior: auto; /* Permite el rebote nativo */
-    
-    /* Evitar alturas fijas que confunden al navegador */
-    height: auto;
-    min-height: 100%;
+    height: 100%;
+    min-height: 100vh;
   }
   
   body {
     @apply antialiased text-gray-100;
-    background-color: #050505;
-    
-    /* Aseguramos que el contenido crezca libremente */
+    background-color: #050505 !important;
     min-height: 100vh;
     width: 100%;
-    
-    /* 'clip' es mejor que 'hidden' para móviles modernos */
-    overflow-x: clip; 
-    overflow-y: visible; /* Deja que el HTML maneje el scroll */
+    overflow-x: hidden;
   }
 
-  /* Estética Scrollbar (Solo PC) */
+  /* Scrollbar personalizado (Solo PC) */
   ::-webkit-scrollbar {
     width: 6px;
   }
