@@ -38,19 +38,21 @@ const services = [
 <Layout title="Byit - Desarrollo Web de Alto Rendimiento">
   <Navbar />
 
+  <!-- Gradientes de fondo - Absolute para cubrir todo el documento -->
   <div
-    class="fixed inset-0 w-full h-full pointer-events-none -z-20 overflow-hidden"
+    class="absolute top-0 left-0 w-full pointer-events-none -z-20 overflow-hidden"
+    style="min-height: 100%; height: auto;"
   >
     <div
-      class="absolute top-[-10%] left-[-10%] w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(255,99,99,0.60)_0%,transparent_65%)] blur-[90px] mix-blend-screen animate-pulse-slow"
+      class="fixed top-[-10%] left-[-10%] w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(255,99,99,0.60)_0%,transparent_65%)] blur-[90px] mix-blend-screen animate-pulse-slow"
     >
     </div>
     <div
-      class="absolute top-[10%] right-[-10%] w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(139,92,246,0.50)_0%,transparent_60%)] blur-[110px] mix-blend-screen"
+      class="fixed top-[10%] right-[-10%] w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(139,92,246,0.50)_0%,transparent_60%)] blur-[110px] mix-blend-screen"
     >
     </div>
     <div
-      class="absolute bottom-[-10%] left-[-5%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,140,0,0.45)_0%,transparent_60%)] blur-[100px] mix-blend-screen"
+      class="fixed bottom-0 left-[-5%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,140,0,0.45)_0%,transparent_60%)] blur-[100px] mix-blend-screen"
     >
     </div>
   </div>
