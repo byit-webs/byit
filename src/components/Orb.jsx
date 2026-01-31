@@ -207,7 +207,7 @@ export default function Orb({
     };
   }, [hue, hoverIntensity, rotateOnHover, forceHoverState, backgroundColor]);
 
-  return <div ref={ctnDom} className="w-full h-full relative z-10" />;
+  return <div ref={ctnDom} className="absolute inset-0 w-full h-full" />;
 }
 
 function hexToVec3(color) {
