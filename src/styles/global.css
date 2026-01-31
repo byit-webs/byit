@@ -14,9 +14,12 @@
     
     background-color: #050505;
     
-    /* REGLAS PARA FLUIDEZ MÁXIMA EN MÓVIL */
-    touch-action: pan-y;       /* Solo permite scroll vertical, elimina lag de zoom/gestos */
-    overscroll-behavior: auto; /* Permite el rebote nativo (es necesario para que no se trabe) */
+    /* SCROLL SUAVE NATIVO EN MÓVIL (Lenis solo en desktop) */
+    scroll-behavior: smooth;
+    
+    /* REGLAS PARA FLUIDEZ MÁXIMA */
+    touch-action: pan-y;       /* Solo permite scroll vertical, elimina lag */
+    overscroll-behavior: auto; /* Permite el rebote nativo */
     
     /* Evitar alturas fijas que confunden al navegador */
     height: auto;

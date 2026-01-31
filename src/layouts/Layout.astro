@@ -102,8 +102,9 @@ const GA_ID = "G-4FLC2T40F9";
                 style="display:none;visibility:hidden"></iframe>
         </noscript>
 
+        <!-- Fondo fijo que cubre todo el área de scroll -->
         <div
-            style="position: fixed; top: -100vh; left: 0; width: 100%; height: 300vh; z-index: -9999; background-color: #050505; pointer-events: none;"
+            style="position: fixed; top: -100vh; left: 0; width: 100%; height: 500vh; z-index: -9999; background-color: #050505; pointer-events: none;"
         >
             <div
                 class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent"
@@ -139,39 +140,53 @@ const GA_ID = "G-4FLC2T40F9";
                     ).toString();
             });
 
-            // 2. Scroll Suave (LENIS ACTIVADO EN MÓVIL)
+            // 2. Scroll Suave con Lenis - SOLO EN DESKTOP (móvil usa scroll nativo)
             import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm";
 
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                direction: "vertical",
-                gestureDirection: "vertical",
-                smooth: true,
-                mouseMultiplier: 1,
+            let lenis;
+            const isMobile = window.innerWidth < 768;
 
-                // === CAMBIOS PARA MÓVIL ===
-                smoothTouch: true, // ¡ACTIVADO! Lenis controla el touch
-                touchMultiplier: 2, // Sensibilidad del dedo (2 es estándar, ajústalo si va muy rápido)
-            });
+            // Solo inicializar Lenis en DESKTOP - en móvil el scroll nativo es más fluido
+            if (!isMobile) {
+                lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    direction: "vertical",
+                    gestureDirection: "vertical",
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: false, // DESACTIVADO - evita conflictos en móvil
+                });
 
-            function raf(time) {
-                lenis.raf(time);
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
                 requestAnimationFrame(raf);
             }
-            requestAnimationFrame(raf);
 
+            // Smooth scroll para anclas (funciona con y sin Lenis)
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 anchor.addEventListener("click", function (e) {
                     e.preventDefault();
                     const href = this.getAttribute("href");
                     if (href && href !== "#") {
                         const target = document.querySelector(href);
-                        if (target)
-                            lenis.scrollTo(target, {
-                                offset: -20,
-                                duration: 1.5,
-                            });
+                        if (target) {
+                            if (lenis) {
+                                // Desktop con Lenis
+                                lenis.scrollTo(target, {
+                                    offset: -20,
+                                    duration: 1.5,
+                                });
+                            } else {
+                                // Móvil con scroll nativo suave
+                                target.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                });
+                            }
+                        }
                     }
                 });
             });
